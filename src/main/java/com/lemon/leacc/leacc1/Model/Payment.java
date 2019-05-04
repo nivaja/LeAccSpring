@@ -26,11 +26,12 @@ public class Payment implements Serializable{
     private List<PaymentAccount> paymentAccount;
 
 
-    @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="subAccountId")
+    @JsonBackReference(value = "cashSubAccount")
     @ManyToOne
     @JoinColumn(name = "cash_sub_account_id")
     private SubAccount cashSubAccount;
 
+    @JsonBackReference(value = "fiscalAccount")
     @ManyToOne
     @JoinColumn(name = "fiscal_account_id")
     private FiscalAccount fiscalAccount;

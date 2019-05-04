@@ -16,26 +16,27 @@ public class FiscalAccount implements Serializable {
     private int fiscalAccountId;
     private String fiscalAccountDescription;
 
-    @JsonIgnore
+
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "company_id")
     private Company company;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "fiscalAccount")
-    private List<Account> accounts;
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "fiscalAccount")
+//    private List<Account> accounts;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "fiscalAccount")
-    private List<SubAccount> subAccounts;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "fiscalAccount")
-    private List<Journal> journals;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "fiscalAccount")
-    private List<Vendor> vendors;
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "fiscalAccount")
+//    private List<SubAccount> subAccounts;
+//
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "fiscalAccount")
+//    private List<Journal> journals;
+//
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "fiscalAccount")
+//    private List<Vendor> vendors;
 
 //    @JsonIgnore
 //    @OneToMany(mappedBy = "fiscalAccount")
@@ -67,46 +68,46 @@ public class FiscalAccount implements Serializable {
     public void setCompany(Company company) {
         this.company = company;
     }
+//
+//    public List<Account> getAccounts() {
+//        return accounts;
+//    }
+//
+//    public void setAccounts(List<Account> accounts) {
+//        this.accounts = accounts;
+//    }
 
-    public List<Account> getAccounts() {
-        return accounts;
-    }
-
-    public void setAccounts(List<Account> accounts) {
-        this.accounts = accounts;
-    }
-
-    public List<SubAccount> getSubAccounts() {
-        return subAccounts;
-    }
-
-    public void setSubAccounts(List<SubAccount> subAccounts) {
-        this.subAccounts = subAccounts;
-    }
-
-    public List<Journal> getJournals() {
-        return journals;
-    }
-
-    public void setJournals(List<Journal> journals) {
-        this.journals = journals;
-    }
-
-    public int getFiscalAccountId() {
-        return fiscalAccountId;
-    }
-
-    public void setFiscalAccountId(int fiscalAccountId) {
-        this.fiscalAccountId = fiscalAccountId;
-    }
-
-    public List<Vendor> getVendors() {
-        return vendors;
-    }
-
-    public void setVendors(List<Vendor> vendors) {
-        this.vendors = vendors;
-    }
+//    public List<SubAccount> getSubAccounts() {
+//        return subAccounts;
+//    }
+//
+//    public void setSubAccounts(List<SubAccount> subAccounts) {
+//        this.subAccounts = subAccounts;
+//    }
+//
+//    public List<Journal> getJournals() {
+//        return journals;
+//    }
+//
+//    public void setJournals(List<Journal> journals) {
+//        this.journals = journals;
+//    }
+//
+//    public int getFiscalAccountId() {
+//        return fiscalAccountId;
+//    }
+//
+//    public void setFiscalAccountId(int fiscalAccountId) {
+//        this.fiscalAccountId = fiscalAccountId;
+//    }
+//
+//    public List<Vendor> getVendors() {
+//        return vendors;
+//    }
+//
+//    public void setVendors(List<Vendor> vendors) {
+//        this.vendors = vendors;
+//    }
 
 //    public List<Sales> getSales() {
 //        return sales;

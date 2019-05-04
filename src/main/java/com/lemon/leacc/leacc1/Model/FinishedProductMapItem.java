@@ -13,6 +13,7 @@ public class FinishedProductMapItem implements Serializable {
     private int finishedProductMapItemId;
 
     @ManyToOne
+    @JsonBackReference(value = "product")
     @JoinColumn(name = "product_id")
     private Product product;
 
@@ -20,9 +21,10 @@ public class FinishedProductMapItem implements Serializable {
     private String remarks;
 
 
-    @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL)
+
+    @ManyToOne
     @JoinColumn(name = "finished_product_map_id")
+    @JsonBackReference(value = "finishedProductMap")
     private FinishedProductMap finishedProductMap;
 
     public int getFinishedProductMapItemId() {

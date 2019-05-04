@@ -23,7 +23,7 @@ public class Godown implements Serializable {
     private String phone;
     private String stockLimit;
 
-    @JsonBackReference
+    @JsonBackReference(value = "fiscalAccount")
     @ManyToOne
     @JoinColumn(name = "fiscal_account_id")
     private FiscalAccount fiscalAccount;

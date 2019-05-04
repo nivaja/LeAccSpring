@@ -30,7 +30,8 @@ public class Vendor implements Serializable {
     private Date JoinDate;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference(value = "fiscalAccount")
     @JoinColumn(name = "fiscal_account_id")
     private FiscalAccount fiscalAccount;
 

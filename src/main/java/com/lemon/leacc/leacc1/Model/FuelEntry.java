@@ -20,13 +20,14 @@ public class FuelEntry implements Serializable {
     private double fuelRate;
     private double totalAmount;
 
-    @JsonBackReference
+    @JsonBackReference(value = "vehicle")
     @ManyToOne
     @JoinColumn(name = "vehicle_id")
     private Vehicle vehicle;
 
     @ManyToOne
     @JoinColumn(name = "fiscal_account_id")
+    @JsonBackReference(value = "fiscalAccount")
     private FiscalAccount fiscalAccount;
 
     public FiscalAccount getFiscalAccount() {

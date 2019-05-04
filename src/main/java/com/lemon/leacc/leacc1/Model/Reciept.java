@@ -20,21 +20,19 @@ public class Reciept implements Serializable {
 
 
 
-    @JsonBackReference
     @ManyToOne
+    @JsonBackReference(value = "cashSubAccount")
     @JoinColumn(name = "cash_sub_account_id")
     private SubAccount cashSubAccount;
 
     private String chequeNo;
     private String description;
 
-
-    @JsonManagedReference
-    @OneToMany(mappedBy = "reciept")
+    @OneToMany(mappedBy = "reciept", cascade = CascadeType.ALL)
     private List<RecieptAccount> recieptAccount;
 
-    @JsonBackReference
     @ManyToOne
+    @JsonBackReference(value = "fiscalAccount")
     @JoinColumn(name = "fiscal_account_id")
     private FiscalAccount fiscalAccount;
 

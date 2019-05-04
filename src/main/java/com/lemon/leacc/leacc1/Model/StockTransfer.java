@@ -20,10 +20,12 @@ public class StockTransfer implements Serializable {
     private String description;
 
     @ManyToOne
+    @JsonBackReference(value = "fromGowdown")
     @JoinColumn(name = "from_godown_id", nullable = false)
     private Godown fromGodown;
 
     @ManyToOne
+    @JsonBackReference(value = "toGodown")
     @JoinColumn(name = "to_godown_id", nullable = false)
     private Godown toGodown;
 
@@ -31,8 +33,9 @@ public class StockTransfer implements Serializable {
     @OneToMany(mappedBy = "stockTransfer",cascade = CascadeType.ALL)
     private List<InventoryTransferProduct> inventoryTransferProducts;
 
-    @JsonBackReference
+
     @ManyToOne
+    @JsonBackReference(value = "fiscalAccount")
     @JoinColumn(name = "fiscal_account_id")
     private FiscalAccount fiscalAccount;
 

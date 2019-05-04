@@ -17,17 +17,16 @@ public class Journal implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date transactionDate;
 
-    @JsonIgnore
-    @JsonManagedReference
+    @JsonBackReference(value = "journalCredits")
     @OneToMany
     private List<JournalCredit> journalCredits;
 
     @JsonIgnore
-    @JsonManagedReference
+    @JsonBackReference(value = "journalDebits")
     @OneToMany
     private List<JournalDebit> journalDebits;
 
-    @JsonBackReference
+    @JsonBackReference(value = "fiscalAccount")
     @ManyToOne
     @JoinColumn(name = "fiscal_account_id")
     private FiscalAccount fiscalAccount;

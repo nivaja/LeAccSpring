@@ -1,6 +1,7 @@
 package com.lemon.leacc.leacc1.Model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,21 +12,21 @@ public class RecieptAccount implements Serializable {
     @Id
     private int recieptAccountId;
 
-    @JsonBackReference
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    @JsonBackReference(value = "account")
     @JoinColumn(name = "account_id")
     private Account account;
 
-    @JsonBackReference
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    @JsonBackReference(value = "subAccount")
     @JoinColumn(name = "sub_account_id")
     private SubAccount subAccount;
 
     private double amount;
     private String remarks;
 
-    @JsonBackReference
     @ManyToOne
+    @JsonBackReference(value = "reciept")
     @JoinColumn(name = "reciept_id")
     private Reciept reciept;
 

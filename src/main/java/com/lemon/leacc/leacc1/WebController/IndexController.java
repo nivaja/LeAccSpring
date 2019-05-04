@@ -66,8 +66,11 @@ public class IndexController {
         return "login";
     }
 
+    @Autowired
+    AccountTypeRepo accountTypeRepo;
     @GetMapping("/coa")
-    public String coa(){
+    public String coa(Model model){
+        model.addAttribute("accountTypes",accountTypeRepo.findAll());
         return "chartOfAccount";
     }
 
@@ -128,7 +131,16 @@ public class IndexController {
     }
 
     @RequestMapping("/voucher/reciept")
-    public String voucherReciept(){
+    public String voucherReciept(Model model){
+
+        FiscalAccount fiscalAccount =sessionService.getCurrentUserSession().getFiscalAccount();
+        List<Account> accounts = accountRepo.findByFiscalAccount(fiscalAccount);
+        List<SubAccount> cashSubAccounts = subAccountRepo.findByAccount_AccountDescription("cash");
+        List<SubAccount> subAccounts = subAccountRepo.findByFiscalAccount(fiscalAccount);
+
+        model.addAttribute("subAccounts",subAccounts);
+        model.addAttribute("cashSubAccounts",cashSubAccounts);
+        model.addAttribute("accounts",accounts);
         return "voucher_reciept_entry";
     }
 

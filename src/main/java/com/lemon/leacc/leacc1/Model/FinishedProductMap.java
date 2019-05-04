@@ -19,6 +19,7 @@ public class FinishedProductMap implements Serializable {
 
     @NotNull
     @ManyToOne
+    @JsonBackReference(value = "productToMap")
     @JoinColumn(name = "product_id",nullable = false)
     private Product productToMap;
 
@@ -27,7 +28,8 @@ public class FinishedProductMap implements Serializable {
     @OneToMany(mappedBy = "finishedProductMap",cascade = CascadeType.ALL)
     private List<FinishedProductMapItem> finishedProductMapItem;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    @JsonBackReference(value = "fiscalAccount")
     @JoinColumn(name = "fiscal_account_id", nullable = false)
     private FiscalAccount fiscalAccount;
 

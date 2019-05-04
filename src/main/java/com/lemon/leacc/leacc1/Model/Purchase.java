@@ -17,6 +17,7 @@ public class Purchase implements Serializable {
     private int purchaseId;
     @NotNull
     @ManyToOne
+    @JsonBackReference(value = "vendor")
     @JoinColumn(name = "vendor_id")
     private Vendor vendor;
     private String billNo;
@@ -25,6 +26,7 @@ public class Purchase implements Serializable {
     private String purchaseDescription;
 
     @ManyToOne
+    @JsonBackReference(value = "vehicle")
     @JoinColumn(name = "vehicle_id")
     private Vehicle vehicle;
 
@@ -35,6 +37,7 @@ public class Purchase implements Serializable {
     private List<PurchaseProduct> purchaseProducts;
 
     @ManyToOne
+    @JsonBackReference(value = "fiscalAccount")
     @JoinColumn(name = "fiscal_account_id")
     private FiscalAccount fiscalAccount;
 

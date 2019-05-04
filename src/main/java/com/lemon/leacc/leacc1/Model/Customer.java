@@ -27,13 +27,11 @@ public class Customer implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date JoinDate;
 
-    @JsonIgnore
-    //@JsonManagedReference
+    @JsonBackReference
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fiscal_account_id")
     private FiscalAccount fiscalAccount;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "customer",cascade=CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Sales> sales;
 

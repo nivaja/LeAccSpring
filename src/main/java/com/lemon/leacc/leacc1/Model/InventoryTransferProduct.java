@@ -1,5 +1,6 @@
 package com.lemon.leacc.leacc1.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -12,13 +13,14 @@ public class InventoryTransferProduct implements Serializable {
     private int inventoryTransferProductId;
 
     @ManyToOne
+    @JsonBackReference(value = "product")
     @JoinColumn(name = "product_id")
     private Product product;
 
     private double quantity;
     private String remarks;
 
-    @JsonIgnore
+    @JsonBackReference(value = "stockTransfer")
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "stock_transfer_id")
     private StockTransfer stockTransfer;

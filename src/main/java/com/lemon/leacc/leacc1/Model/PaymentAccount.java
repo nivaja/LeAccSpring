@@ -12,20 +12,20 @@ public class PaymentAccount implements Serializable {
     @GeneratedValue
     @Id
     private int paymentAccountId;
-
-    @JsonBackReference(value = "account")
     @ManyToOne
+    @JsonBackReference(value = "account")
     @JoinColumn(name = "account_id")
     private Account account;
 
-@JsonBackReference(value = "sub_account")
     @ManyToOne
+    @JsonBackReference(value = "subAccount")
     @JoinColumn(name = "sub_account_id")
     private SubAccount subAccount;
 
     private double amount;
     private String remarks;
 
+    @JsonBackReference(value = "payment")
     @ManyToOne
     @JoinColumn(name = "payment_id")
     private Payment payment;

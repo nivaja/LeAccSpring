@@ -2,6 +2,7 @@ package com.lemon.leacc.leacc1.Model;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -14,11 +15,13 @@ public class PurchaseProduct implements Serializable {
     private int purcahseProductId;
 
     @ManyToOne
+    @JsonBackReference(value = "product")
     @JoinColumn(name = "product_id")
     private Product product;
 
 
     @ManyToOne
+    @JsonBackReference(value = "godown")
     @JoinColumn(name = "godown_id")
     private Godown godown;
 
@@ -33,6 +36,7 @@ public class PurchaseProduct implements Serializable {
     private double netAmount;
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @JsonBackReference(value = "purchase")
     @JoinColumn(name = "purchase_entry_id")
     private Purchase purchase;
 

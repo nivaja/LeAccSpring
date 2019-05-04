@@ -25,7 +25,7 @@ public class Employee implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date joinDate;
 
-    @JsonBackReference
+    @JsonBackReference(value = "fiscalAccount")
     @ManyToOne
     @JoinColumn(name = "fiscal_account_id")
     private FiscalAccount fiscalAccount;

@@ -14,17 +14,19 @@ public class JournalDebit implements Serializable {
     private int id;
 
     @ManyToOne
+    @JsonBackReference(value = "debitAccount")
     @JoinColumn(name = "debit_account_id")
     private Account debitAccount;
 
     @ManyToOne
+    @JsonBackReference(value = "debitSubAccount")
     @JoinColumn(name = "debit_sub_account_id")
     private SubAccount debitSubAccount;
 
     private double debitAmount;
     private String description;
 
-    @JsonBackReference
+    @JsonBackReference(value = "journal")
     @ManyToOne
     @JoinColumn(name = "journal_id")
     private Journal journal;

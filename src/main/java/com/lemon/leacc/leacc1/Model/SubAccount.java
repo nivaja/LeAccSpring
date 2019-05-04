@@ -17,6 +17,7 @@ public class SubAccount implements Serializable {
 
 
     @ManyToOne
+    @JsonBackReference(value = "account")
     @JoinColumn(name = "account_id")
     private Account account;
 
@@ -25,8 +26,8 @@ public class SubAccount implements Serializable {
 //    @OneToMany(mappedBy = "cashSubAccount",cascade = CascadeType.ALL)
 //    private List<Payment> payments;
 
-
     @ManyToOne
+    @JsonBackReference(value = "fiscalAccount")
     @JoinColumn(name = "fiscal_account_id")
     private FiscalAccount fiscalAccount;
 

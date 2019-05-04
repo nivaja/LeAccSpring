@@ -20,12 +20,13 @@ public class MaintenanceEntry {
     private double remarks;
     private double totalAmount;
 
-    @JsonBackReference
+    @JsonBackReference(value = "value")
     @ManyToOne
     @JoinColumn(name = "vehicle_id")
     private Vehicle vehicle;
 
     @ManyToOne
+    @JsonBackReference(value = "fiscalAccount")
     @JoinColumn(name = "fiscal_account_id")
     private FiscalAccount fiscalAccount;
 

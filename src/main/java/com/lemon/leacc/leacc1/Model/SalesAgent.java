@@ -30,7 +30,7 @@ public class SalesAgent implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date JoinDate;
 
-    @JsonBackReference
+    @JsonBackReference(value = "fiscalAccount")
     @ManyToOne
     @JoinColumn(name = "fiscal_account_id")
     private FiscalAccount fiscalAccount;

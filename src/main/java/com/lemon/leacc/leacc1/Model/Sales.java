@@ -15,9 +15,10 @@ public class Sales implements Serializable {
     @Id
     private int SalesId;
 
-    @JsonManagedReference
+
     @NotNull
     @ManyToOne
+    @JsonBackReference(value = "customer")
     @JoinColumn(name = "customer_id")
     private Customer customer;
     private String billNo;
@@ -25,12 +26,14 @@ public class Sales implements Serializable {
     private Date Date;
     private String salesDescription;
 
-    @JsonManagedReference
+
     @ManyToOne
+    @JsonBackReference(value = "salesAgent")
     @JoinColumn(name = "sales_agent_id")
     private SalesAgent salesAgent;
 
     @ManyToOne
+    @JsonBackReference(value = "vehicle")
     @JoinColumn(name = "vehicle_id")
     private Vehicle vehicle;
 
@@ -41,8 +44,8 @@ public class Sales implements Serializable {
     private List<SalesProduct> salesProducts;
 
 
-    @JsonIgnore
     @ManyToOne
+    @JsonBackReference(value = "fiscalAccount")
     @JoinColumn(name = "fiscal_account_id")
     private FiscalAccount fiscalAccount;
 

@@ -16,8 +16,7 @@ public class AccountGroup implements Serializable {
     private int AccountGroupId;
     private String AccountGroupDescription;
 
-    @JsonIgnore
-    @JsonManagedReference
+
     @OneToMany(mappedBy = "accountGroup", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<AccountType> accountTypes=new ArrayList<AccountType>();
 

@@ -22,7 +22,7 @@
 
 <div layout:fragment="content">
     <div class="page-title">
-       <strong> <h3 class="breadcrumb-header">Reciept Voucher</h3></strong>
+        <h3 class="breadcrumb-header">Reciept Voucher</h3>
     </div>
     <div id="main-wrapper">
         <div class="row">
@@ -32,104 +32,93 @@
                 <div class="card">
                     <div class="card-body pt-0" style="margin-top: 1.2rem;">
 
-                        <form>
+                        <form id="voucherRecieptForm">
                             <div class="form-row">
-                                <div class="col-4">
-                                    <label for="inputDate">Transaction Date</label>
-                                    <input type="text" class="form-control" placeholder="04/14/2075">
+                                <div class="col-6">
+                                    <label>Transaction Date</label>
+                                    <input name="date" type="date" class="form-control" placeholder="04/14/2075">
                                 </div>
-                                <div class="col-4">
-                                    <label for="inputBillNo">Bill-No</label>
-                                    <input type="text" class="form-control" placeholder="Bill-No">
-                                </div>
-                                <div class="col-4">
-                                    <label for="inputTransactionNo">Transaction No</label>
-                                    <input type="text" class="form-control" placeholder="PB-1452">
+                                <div class="col-6">
+                                    <label>Bill-No</label>
+                                    <input name="billNo" type="text" class="form-control" placeholder="Bill-No">
                                 </div>
 
                             </div>
                             <div class="form-row">
                                 <div class="col">
-                                    <label for="inputCashBank">Cash / Bank</label>
-                                    <select id="inputCashBank" class="form-control">
-                                        <option selected>Cash In Hand</option>
-                                        <option>...</option>
+                                    <label>Cash / Bank</label>
+                                    <select name="cashSubAccount" class="form-control product" required>
+                                        <th:block th:each="cashSubAccount : ${cashSubAccounts}">
+                                            <option th:value="${cashSubAccount.getSubAccountId()}" th:text="${cashSubAccount.getSubAccountDescription()}">
+
+                                            </option>
+                                        </th:block>
                                     </select>
                                 </div>
 
                                 <div class="col">
-                                    <label for="inputBalance">Balance</label>
-                                    <input type="text" class="form-control" placeholder="Rs 54654">
+                                    <label>Balance</label>
+                                    <input type="text" class="form-control" placeholder="Rs 54654" disabled>
                                 </div>
 
                             </div>
                             <div class="form-row">
                                 <div class="col">
-                                    <label for="inputCashBank">Cheque No</label>
-                                    <input type="text" class="form-control" placeholder="Cheque No">
+                                    <label>Cheque No</label>
+                                    <input name="chequeNo" type="text" class="form-control" placeholder="Cheque No">
                                 </div>
 
                                 <div class="col">
-                                    <label for="inputBalance">Description</label>
-                                    <input type="text" class="form-control" placeholder="Description">
+                                    <label>Description</label>
+                                    <input name="description" type="text" class="form-control" placeholder="Description">
                                 </div>
                             </div>
                             <div class="dropdown-divider"></div>
                             <div class="table" style="margin-top: 1.5rem;">
-                                <table class="table-responsive" style="width: 100%;">
-                                    <caption>List of users</caption>
+                                <table class="table-responsive productTable" style="width: 100%;">
                                     <thead>
                                     <tr>
                                         <th scope="col-3">Sn</th>
                                         <th scope="col-3">Account</th>
                                         <th scope="col-3">Sub-Account</th>
-                                        <th scope="col-3">Receipt</th>
-                                        <th scope="col-3">Payment</th>
+                                        <th scope="col-3">Reciept</th>
                                         <th scope="col-3">Remarks</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
+                                    <tr  class="mainRow">
                                         <th scope="row">1</th>
                                         <td>
-                                            <select id="inputCashBank" class="form-control">
-                                                <option selected>Cash In Hand</option>
-                                                <option>asdas</option>
-                                                <option>apple</option>
-                                                <option>nivaja</option>
+                                            <select class="form-control account" required>
+                                                <th:block th:each="account : ${accounts}">
+                                                    <option th:value="${account.getAccountId()}" th:text="${account.getAccountDescription()}">
+
+                                                    </option>
+                                                </th:block>
                                             </select>
                                         </td>
                                         <td>
-                                            <select id="inputCashBank" class="form-control">
-                                                <option selected>Cash In Hand</option>
-                                                <option>asdas</option>
-                                                <option>apple</option>
-                                                <option>nivaja</option>
+                                            <select class="form-control subAccount" required>
+                                                <th:block th:each="subAccount : ${subAccounts}">
+                                                    <option th:value="${subAccount.getSubAccountId()}" th:text="${subAccount.getSubAccountDescription()}">
+
+                                                    </option>
+                                                </th:block>
                                             </select>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" placeholder="Receipt">
-                                        </td>
-                                        <td>
-                                            <input type="text" class="form-control" placeholder="Payment">
+                                            <input type="text" class="form-control" placeholder="Reciept">
                                         </td>
                                         <td>
                                             <input type="text" class="form-control" placeholder="Remarks">
                                         </td>
+                                        <td>
+                                            <button class="btn btn-link removeRow"><i class="fa fa-remove" aria-hidden="true"></i></button>
+                                            <button class="btn btn-link addRow"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                        </td>
 
                                     </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td><</td>
-                                        <td></td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
+
                                     </tbody>
                                 </table>
                             </div>
@@ -138,7 +127,7 @@
                             <div class="dropdown-divider"></div>
                             <div style="margin-left: 85%; display: inline-flex;">
                                 <button type="submit" class="btn btn-primary">Save</button>
-                                <button type="submit" class="btn btn-secondary" style="margin-left: 0.5rem;">Cancel</button>
+                                <button id="cancel" class="btn btn-secondary" style="margin-left: 0.5rem;">Cancel</button>
                             </div>
                         </form>
                         <!-- <canvas height="130" style="max-width: 100% !important;" class="blog-overview-users"></canvas> -->
@@ -149,6 +138,9 @@
 
         </div>
     </div>
+    <script th:src="@{/space_static/plugins/jquery/jquery-3.1.0.min.js}"></script>
+    <script th:src="@{/custom/js/basic_form_script.js}"></script>
+    <script th:src="@{/custom/js/voucher_reciept_entry.js}"></script>
 </div>
 
 </body>

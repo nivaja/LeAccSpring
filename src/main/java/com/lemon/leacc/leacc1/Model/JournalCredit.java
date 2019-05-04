@@ -11,12 +11,12 @@ public class JournalCredit implements Serializable {
     @GeneratedValue
     private int id;
 
-    @JsonBackReference
+    @JsonBackReference(value = "creditAccount")
     @ManyToOne
     @JoinColumn(name = "credit_account_id")
     private Account creditAccount;
 
-    @JsonBackReference
+    @JsonBackReference(value = "creditSubAccount")
     @ManyToOne
     @JoinColumn(name = "credit_sub_account_id")
     private SubAccount creditSubAccount;
@@ -24,7 +24,7 @@ public class JournalCredit implements Serializable {
     private double creditAmount;
     private String description;
 
-    @JsonBackReference
+    @JsonBackReference(value = "journal")
     @ManyToOne
     @JoinColumn(name = "journal_id")
     private Journal journal;

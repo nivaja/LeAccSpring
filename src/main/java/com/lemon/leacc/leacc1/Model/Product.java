@@ -17,7 +17,7 @@ public class Product implements Serializable {
     private String productType;
     private double stockLimit;
 
-    @JsonBackReference
+    @JsonBackReference(value = "fiscalAccount")
     @ManyToOne
     @JoinColumn(name = "fiscal_account_id")
     private FiscalAccount fiscalAccount;

@@ -1,5 +1,6 @@
 package com.lemon.leacc.leacc1.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -9,7 +10,7 @@ public class FinishedGoodEntryProducts {
     @GeneratedValue
     @Id
     private int finishedGoodEntryProductId;
-
+    @JsonBackReference(value = "product")
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
@@ -17,7 +18,7 @@ public class FinishedGoodEntryProducts {
     private double quantity;
     private String remarks;
 
-    @JsonIgnore
+    @JsonBackReference(value = "finishedGoodEntryId")
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "finished_good_entry_id")
     private FinishedGoodEntry finishedGoodEntry;

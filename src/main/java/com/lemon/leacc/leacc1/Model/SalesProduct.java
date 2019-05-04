@@ -13,11 +13,12 @@ public class SalesProduct implements Serializable {
     private int salesProductId;
     
     @ManyToOne
+    @JsonBackReference(value = "product")
     @JoinColumn(name = "product_id")
     private Product product;
 
-    @JsonBackReference
     @ManyToOne
+    @JsonBackReference(value = "godown")
     @JoinColumn(name = "godown_id")
     private Godown godown;
 
@@ -31,8 +32,9 @@ public class SalesProduct implements Serializable {
     private double discountAmount;
     private double netAmount;
 
-    @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL)
+
+    @ManyToOne
+    @JsonBackReference(value = "sales")
     @JoinColumn(name = "sales_entry_id")
     private Sales sales;
 

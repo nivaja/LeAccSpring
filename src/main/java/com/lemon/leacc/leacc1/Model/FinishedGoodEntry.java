@@ -1,5 +1,6 @@
 package com.lemon.leacc.leacc1.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -18,6 +19,7 @@ public class FinishedGoodEntry implements Serializable{
     private String billNo;
     private String description;
 
+    @JsonBackReference(value = "toGowdown")
     @ManyToOne
     @JoinColumn(name = "to_godown_id")
     private Godown toGodown;
@@ -25,7 +27,7 @@ public class FinishedGoodEntry implements Serializable{
     @OneToMany(mappedBy = "finishedGoodEntry",cascade = CascadeType.ALL)
     private List<FinishedGoodEntryProducts> finishedGoodEntryProducts;
 
-    @JsonIgnore
+    @JsonBackReference(value="fiscalAccount")
     @ManyToOne
     private FiscalAccount fiscalAccount;
 

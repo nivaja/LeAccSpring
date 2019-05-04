@@ -14,13 +14,11 @@ public class AccountType implements Serializable {
     @Id
     private int accountTypeId;
     private String accountTypeDescription;
-
-    @JsonBackReference
+    @JsonBackReference(value = "accountGroup")
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "account_group_id")
     private AccountGroup accountGroup;
-    @JsonIgnore
-    @JsonManagedReference
+
     @OneToMany(mappedBy = "accountType",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Account> accounts;
 

@@ -1,0 +1,48 @@
+
+
+<div th:fragment="add_account_modal">
+    <div class="card modal-content" style="margin: 3%;">
+        <div class="card-header border-bottom">
+            <div class="row">
+                <div class="col-6 text-left">
+                    <h6 class="m-0">Add Account</h6>
+                </div>
+                <div class="col-6 text-right">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                </div>
+            </div>
+        </div>
+        <div class="card-body" style="padding: 5%;">
+            <form id="accountForm">
+
+
+                <div class="form-row">
+                    <label>Account Type</label>
+                    <select name="accountType" id="accountType"  class="form-control">
+                        <th:block th:each="accountType : ${accountTypes}">
+                            <option th:value="${accountType.getAccountTypeId()}" th:text="${#strings.capitalizeWords(accountType.getAccountTypeDescription())}">
+
+                            </option>
+                        </th:block>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label>Account Description</label>
+                    <input name="accountDescription" type="text" class="form-control" placeholder="Account Description">
+                </div>
+
+
+                <div class="dropdown-divider"></div>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button id="cancel" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script th:src="@{/space_static/plugins/jquery/jquery-3.1.0.min.js}"></script>
+
+    <script th:src="@{/custom/js/add_account.js}"></script>
+</div>

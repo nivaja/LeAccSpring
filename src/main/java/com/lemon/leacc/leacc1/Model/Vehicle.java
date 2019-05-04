@@ -23,7 +23,7 @@ public class Vehicle implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date addedDate;
 
-    @JsonBackReference
+    @JsonBackReference(value = "fiscalAccount")
     @ManyToOne
     @JoinColumn(name = "fiscal_account_id")
     private FiscalAccount fiscalAccount;
