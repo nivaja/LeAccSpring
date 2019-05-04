@@ -1,0 +1,92 @@
+
+
+<div th:fragment="product_map_modal">
+    <div class="card modal-content" style="margin: 3%;">
+        <div class="card-header border-bottom">
+            <div class="row">
+                <div class="col-6 text-left">
+                    <h6 class="m-0">Add Product Map</h6>
+                </div>
+                <div class="col-6 text-right">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                </div>
+            </div>
+        </div>
+        <div class="card-body" style="padding: 5%;">
+            <form id="finishedProductMapForm">
+
+
+                <div class="form-row">
+                    <label>Product To Map</label>
+                    <select id="productToMap" name="productToMap" class="form-control" required>
+                        <th:block th:each="product : ${products}">
+                            <option th:value="${product.getProductId()}" th:text="${product.getProductDescription()}">
+
+                            </option>
+                        </th:block>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label>quantity</label>
+                    <input name="quantity" type="text" class="form-control" placeholder="Quantity">
+                </div>
+                <div class="form-row">
+                    <label>Description</label>
+                    <input name="description" type="text" class="form-control" placeholder="Description">
+                </div>
+                <div class="dropdown-divider"></div>
+
+                <div class="table" >
+                    <table id="productTable" class="table-responsive productTable">
+                        <caption>List of users</caption>
+                        <thead>
+                        <tr>
+                            <th scope="col">Sn</th>
+                            <th scope="col">Product</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Remarks</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="mainRow">
+                            <th scope="row">1</th>
+
+                            <td>
+                                <select class="form-control product" required>
+                                    <th:block th:each="product : ${products}">
+                                        <option th:value="${product.getProductId()}" th:text="${product.getProductDescription()}">
+
+                                        </option>
+                                    </th:block>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" placeholder="Quantity">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" placeholder="Remarks">
+                            </td>
+                            <td>
+                                <button class="btn btn-link removeRow"><i class="fa fa-remove" aria-hidden="true"></i></button>
+                                <button class="btn btn-link addRow"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                            </td>
+
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="dropdown-divider"></div>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button id="cancel" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script th:src="@{/space_static/plugins/jquery/jquery-3.1.0.min.js}"></script>
+    <script th:src="@{/custom/js/basic_form_script.js}"></script>
+    <script th:src="@{/custom/js/finished_good_map.js}"></script>
+</div>

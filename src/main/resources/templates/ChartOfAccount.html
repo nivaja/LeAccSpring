@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns:layout="http://www.ultraq.net.nz.thymeleaf/layout"
+      layout:decorate="~{fragment/main_layout}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Responsive Admin Dashboard Template">
+    <meta name="keywords" content="admin,dashboard">
+    <meta name="author" content="stacks">
+    <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <style type="text/css">
+        th{
+          color: black;
+          margin-left: 10%;
+        }
+    </style>
+    <!-- Title -->
+    <title>Invoice</title>
+
+    <!-- Styles -->
+</head>
+
+<body>
+
+    <div layout:fragment="content">
+        <div class="row">
+            <div class="col pull-left">
+                <h3>Chart Of Account</h3>
+            </div>
+            <div class="col pull-right">
+                <button class="btn btn-link btn-lg">Add new Account Group</button>
+            </div>
+        </div>
+        <div id="main-wrapper">
+            <div class="row">
+
+                <!-- Users Stats -->
+                <div class="col-12 mb-4">
+                    <div class="card">
+                        <div class="card-body pt-0" style="margin-top: 1.2rem;">
+                            <div role="tabpanel">
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs nav-justified" role="tablist">
+                                    <li role="presentation" class="active"><a href="#tab21" role="tab" data-toggle="tab">Assets</a></li>
+                                    <li role="presentation"><a href="#tab22" role="tab" data-toggle="tab">Liabilities</a></li>
+                                    <li role="presentation"><a href="#tab23" role="tab" data-toggle="tab">Equity</a></li>
+                                    <li role="presentation"><a href="#tab24" role="tab" data-toggle="tab">Income</a></li>
+                                    <li role="presentation"><a href="#tab25" role="tab" data-toggle="tab">Expense</a></li>
+                                </ul>
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane active fade in" id="tab21">
+
+                                        <div style="margin-top: 1.5rem;" >
+                                            <table class="table table-hover table-responsive">
+
+                                                <thead style="background-color:  #0070E0; color: red ">
+                                                <tr>
+                                                    <th scope="col">Account</th>
+                                                    <th></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody style="margin-left: 3rem;">
+                                                <tr>
+                                                    <th scope="row" size="color:black;">Sub Account</th>
+                                                    <td>
+
+                                                    </td>
+
+
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+
+                                                        <a class="nav-link"><strong>Add new Account</strong></a>
+                                                    </th>
+                                                    <td></td>
+
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="tab22">
+                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="tab23">
+                                        <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.</p>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="tab24">
+                                        <p>Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus.</p>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="tab25">
+                                        <p>Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- End Purchase By vendor Stats -->
+
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

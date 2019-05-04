@@ -1,0 +1,63 @@
+
+
+<div th:fragment="transportation_modal">
+    <div class="card modal-content" style="margin: 3%;">
+        <div class="card-header border-bottom">
+            <div class="row">
+                <div class="col-6 text-left">
+                    <h6 class="m-0">Add Transportation</h6>
+                </div>
+                <div class="col-6 text-right">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                </div>
+            </div>
+        </div>
+        <div class="card-body" style="padding: 5%;">
+            <form id="transportationForm">
+
+
+                <div class="form-row">
+                    <label>Transportation Model Name</label>
+                    <input name="vehicleModel" type="text" class="form-control" placeholder="Model Number">
+                </div>
+
+                <div class="form-row">
+                    <label>Transportation Plate Number</label>
+                    <input name="plateNumber" type="text" class="form-control" placeholder="Plate Number" required>
+                </div>
+                <div class="form-row">
+                    <label>Transportation Bill Book No</label>
+                    <input name="billBookNumber" type="text" class="form-control" placeholder="Bill Book No">
+                </div>
+                <div class="form-row">
+                    <label>Recorded Kilometer</label>
+                    <input name="recordedKm" type="number" class="form-control" placeholder="Recorded Kilometer" required>
+                </div>
+                <div class="form-row">
+                    <div class="col text-left">
+                        <label>Fuel Capacity</label>
+                        <input name="fuelCapacity" type="number" class="form-control" placeholder="PB-1452">
+                    </div>
+                    <div class="col text-left">
+                        <label>Mileage</label>
+                        <input name="mileage" type="number" class="form-control" placeholder="PB-1452">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label>Added Date</label>
+                    <input name="addedDate" type="date" class="form-control" placeholder="Added Date">
+                </div>
+                <div class="dropdown-divider"></div>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button id="cancel" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script th:src="@{/space_static/plugins/jquery/jquery-3.1.0.min.js}"></script>
+
+    <script th:src="@{/custom/js/transportation.js}"></script>
+</div>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns:layout="http://www.ultraq.net.nz.thymeleaf/layout"
+      layout:decorate="~{fragment/main_layout}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Responsive Admin Dashboard Template">
+    <meta name="keywords" content="admin,dashboard">
+    <meta name="author" content="stacks">
+    <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+
+    <style type="text/css">
+        th{
+            color: black;
+            margin-left: 10%;
+        }
+    </style>
+    <!-- Title -->
+    <title>Customer</title>
+
+    <!-- Styles -->
+</head>
+
+<body>
+
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col pull-left">
+            <h3>Customer</h3>
+        </div>
+
+    </div>
+    <div id="main-wrapper">
+
+        <div class="row">
+
+            <div class="col-lg col-md-6 col-sm-6 mb-4">
+                <div class="stats-small stats-small--1 card card-small">
+                    <div class="card-body p-0 d-flex">
+                        <div class="d-flex flex-column m-auto">
+                            <div class="stats-small__data text-center">
+                                <span class="stats-small__label text-uppercase">Average Sales</span>
+                                <h6 class="stats-small__value count my-3">2,390</h6>
+                            </div>
+                            <div class="stats-small__data">
+                                <span class="stats-small__percentage stats-small__percentage--increase">4.7%</span>
+                            </div>
+                        </div>
+                        <canvas height="120" class="blog-overview-stats-small-1"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg col-md-6 col-sm-6 mb-4">
+                <div class="stats-small stats-small--1 card card-small">
+                    <div class="card-body p-0 d-flex">
+                        <div class="d-flex flex-column m-auto">
+                            <div class="stats-small__data text-center">
+                                <span class="stats-small__label text-uppercase">Average Income</span>
+                                <h6 class="stats-small__value count my-3">182</h6>
+                            </div>
+                            <div class="stats-small__data">
+                                <span class="stats-small__percentage stats-small__percentage--increase">12.4%</span>
+                            </div>
+                        </div>
+                        <canvas height="120" class="blog-overview-stats-small-2"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg col-md-4 col-sm-6 mb-4">
+                <div class="stats-small stats-small--1 card card-small">
+                    <div class="card-body p-0 d-flex">
+                        <div class="d-flex flex-column m-auto">
+                            <div class="stats-small__data text-center">
+                                <span class="stats-small__label text-uppercase">Total Customer</span>
+                                <h6 class="stats-small__value count my-3">8,147</h6>
+                            </div>
+                            <div class="stats-small__data">
+                                <span class="stats-small__percentage stats-small__percentage--decrease">3.8%</span>
+                            </div>
+                        </div>
+                        <canvas height="120" class="blog-overview-stats-small-3"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg col-md-4 col-sm-6 mb-4">
+                <div class="stats-small stats-small--1 card card-small">
+                    <div class="card-body p-0 d-flex">
+                        <div class="d-flex flex-column m-auto">
+                            <div class="stats-small__data text-center">
+                                <span class="stats-small__label text-uppercase">Highest Income</span>
+                                <h6 class="stats-small__value count my-3">2,413</h6>
+                            </div>
+                            <div class="stats-small__data">
+                                <span class="stats-small__percentage stats-small__percentage--increase">12.4%</span>
+                            </div>
+                        </div>
+                        <canvas height="120" class="blog-overview-stats-small-4"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg col-md-4 col-sm-12 mb-4">
+                <div class="stats-small stats-small--1 card card-small">
+                    <div class="card-body p-0 d-flex">
+                        <div class="d-flex flex-column m-auto">
+                            <div class="stats-small__data text-center">
+                                <span class="stats-small__label text-uppercase">Highest Sales</span>
+                                <h6 class="stats-small__value count my-3">17,281</h6>
+                            </div>
+                            <div class="stats-small__data">
+                                <span class="stats-small__percentage stats-small__percentage--decrease">2.4%</span>
+                            </div>
+                        </div>
+                        <canvas height="120" class="blog-overview-stats-small-5"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <!-- Users Stats -->
+            <div class="col-12 mb-4">
+                <div class="card">
+                    <div class="card-body pt-0" style="margin-top: 1.2rem;">
+                        <!--HEADER TEXT-->
+                        <div class="row">
+                            <div class="col-md-4 text-left">
+                                <h5>All Customer</h5>
+                            </div>
+                            <div class="col-md-4 offset-md-4 text-right">
+                                <button class="btn btn-link" data-toggle="modal" data-target="#myModal"><strong>Add new Customer</strong></button>
+                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+
+                                            <div th:include="fragment/customer_modal :: customer_modal"></div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--TABLE START-->
+                        <div  class="table-responsive invoice-table">
+
+                        <script>
+                            $(document).ready(function(){
+                                $('#table').DataTable();
+                            });
+                        </script>
+                            <table id="table" class="table table-hover">
+                                <thead class="bg-light">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+                                    <th>Bank Name</th>
+                                    <th>Bank Number</th>
+                                    <th>Credit Limit</th>
+                                    <th>Credit Days</th>
+
+
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <th:block th:each="customer : ${customers}">
+                                    <tr>
+                                        <th th:text="${customer.getCustomerId()}"></th>
+                                        <td> <a th:href="@{'/manage/customer/' + ${customer.getCustomerId()}}" th:text="${customer.getName()}"></a></td>
+                                        <td th:text="${customer.getPhone()}"></td>
+                                        <td th:text="${customer.getEmail()}"></td>
+                                        <td th:text="${customer.getBankName()}"></td>
+                                        <td th:text="${customer.getBankNumber()}"></td>
+                                        <td th:text="${customer.getCreditLimit()}"></td>
+                                        <td th:text="${customer.getCreditDays()}"></td>
+                                    </tr>
+
+                                </th:block>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- End Purchase By vendor Stats -->
+            <!--<script th:src="@{/space_static/plugins/jquery/jquery-3.1.0.min.js}"></script>-->
+            <script th:src="@{/custom/js/customer_main.js}"></script>
+
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+</html>

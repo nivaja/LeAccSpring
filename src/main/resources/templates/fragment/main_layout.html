@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LeAcc</title>
+    <div th:include="fragment/nav_bar :: space_css"></div>
+    <div th:replace="fragment/nav_bar :: shard_css"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+
+<div class="page-container">
+    <!-- Page Sidebar -->
+    <div th:include="fragment/nav_bar :: side_bar"></div>
+
+    <!-- /Page Sidebar -->
+
+    <!-- Page Content -->
+    <div class="page-content">
+        <!-- Page Header -->
+        <div class="page-header">
+
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <div class="logo-sm">
+                            <a href="javascript:void(0)" id="sidebar-toggle-button"><i class="fa fa-bars"></i></a>
+                            <a class="logo-box" th:href="@{/dashboard}"><span>LeAcc</span></a>
+                        </div>
+
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li><a href="javascript:void(0)" id="collapsed-sidebar-toggle-button"><i class="fa fa-bars"></i></a></li>
+                        </ul>
+
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container-fluid -->
+            </nav>
+        </div>
+        <!-- /Page Header -->
+        <!-- Page Inner -->
+        <div class="page-inner" style="margin-top:0px; padding-top: 0px;">
+<!--MAIN CONTENT HERE-->
+            <div layout:fragment="content">
+
+            </div>
+<!--END MAIN CONTENT-->
+        </div>
+            <!-- /Page Inner -->
+
+
+        </div>
+        <!-- /Page Content -->
+    </div>
+    <!-- /Page Container -->
+</div>
+
+
+
+
+<div th:include="fragment/nav_bar :: space_js"></div>
+<div th:include="fragment/nav_bar :: shard_js"></div>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>-->
+<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+
+
+</body>
+</html>

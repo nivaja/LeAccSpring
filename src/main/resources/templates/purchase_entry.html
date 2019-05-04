@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns:layout="http://www.ultraq.net.nz.thymeleaf/layout"
+      layout:decorate="~{fragment/main_layout}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Responsive Admin Dashboard Template">
+    <meta name="keywords" content="admin,dashboard">
+    <meta name="author" content="stacks">
+    <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <link rel="stylesheet" th:href="@{/bootstrap4/css/bootstrap.css}">
+
+    <!-- Title -->
+    <title>Invoice</title>
+
+    <!-- Styles -->
+</head>
+
+<body>
+
+<div layout:fragment="content">
+    <div class="page-title">
+        <h3 class="breadcrumb-header">Purchase Invoice</h3>
+    </div>
+    <div id="main-wrapper">
+        <form id="purchaseForm">
+
+            <div class="row" id="purchaseInfo">
+
+                <!-- Users Stats -->
+                <div class="col-lg-8 col-md-12 col-sm-12 mb-4">
+                    <div class="card">
+                        <div class="card-header border-bottom">
+                            <h6 class="m-0">Basic Info</h6>
+                        </div>
+                        <div class="card-body pt-0" style="margin-top: 1.2rem;">
+                            <div class="form-row">
+
+                                <div class="col">
+                                    <label>Transaction Date</label>
+                                    <input name="date" type="date" class="form-control" placeholder="04/14/2075" required>
+                                </div>
+
+                                <div class="col">
+                                    <label>Bill-No</label>
+                                    <input name="billNo" type="text" class="form-control" placeholder="Bill-No">
+                                </div>
+
+                            </div>
+                            <div class="form-row">
+                                <div class="col-6">
+                                    <label>Vendor</label>
+                                    <select name="vendor" id="vendor" class="form-control" required>
+                                        <th:block th:each="vendor : ${vendors}">
+                                            <option th:value="${vendor.getVendorId()}" th:text="${vendor.getName()}">
+
+                                            </option>
+                                        </th:block>
+                                    </select>
+                                </div>
+
+                                <div class="col-6">
+                                    <label>Vendor's Balance</label>
+                                    <input name="vendorBalance" type="text" class="form-control" placeholder="Rs 54654 DR" disabled>
+                                </div>
+
+                            </div>
+                            <div class="form-row">
+                                <div class="col">
+                                    <label>Description</label>
+                                    <input name="purchaseDescription" type="text" class="form-control" placeholder="Description">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-12 col-sm-12 mb-4">
+                    <div class="card">
+                        <div class="card-header border-bottom">
+                            <h6 class="m-0">Vehicle Info</h6>
+                        </div>
+                        <div class="card-body pt-0" style="margin-top: 1.2rem;">
+
+                            <div class="form-row">
+                                <div class="col">
+                                    <label>Vehicle</label>
+                                    <select name="vehicle" id="vehicle" class="form-control">
+                                        <th:block th:each="vehicle : ${vehicles}">
+                                            <option th:value="${vehicle.getVehicleId()}" th:text="${vehicle.getPlateNumber()}">
+
+                                            </option>
+                                        </th:block>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-6">
+                                    <label>Start KM</label>
+                                    <input name="startKm" type="number" class="form-control" placeholder="Start KM">
+                                </div>
+                                <div class="col-6">
+                                    <label>End KM</label>
+                                    <input name="endKm" type="number" class="form-control" placeholder="End Km">
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--TABLE START-->
+            <div class="row">
+                <div class="col-12 mb-4">
+                    <div class="card">
+                        <div class="card-header border-bottom">
+                            <h6 class="m-0">Product Info</h6>
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="table" >
+                                <table id="productTable" class="table-responsive productTable">
+                                    <caption>List of users</caption>
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Sn</th>
+                                        <th scope="col">Product</th>
+                                        <th scope="col">Quantity</th>
+                                        <th scope="col">Rate</th>
+                                        <th scope="col">Amount</th>
+                                        <th scope="col">Dis%</th>
+                                        <th scope="col">Dis Amt</th>
+                                        <th scope="col">Net Amount</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr class="mainRow">
+                                        <th scope="row">1</th>
+
+                                        <td>
+                                            <select class="form-control product" required>
+                                                <th:block th:each="product : ${products}">
+                                                    <option th:value="${product.getProductId()}" th:text="${product.getProductDescription()}">
+
+                                                    </option>
+                                                </th:block>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" placeholder="Quantity" required>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" placeholder="Rate" required>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" placeholder="Amount" required>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" placeholder="Discount %">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" placeholder="Discount Amount">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" placeholder="Net Amount" required>
+                                        </td>
+                                        <td>
+
+                                            <button class="btn btn-link removeRow"><i class="fa fa-remove" aria-hidden="true"></i></button>
+                                            <button class="btn btn-link addRow"><i class="fa fa-plus" aria-hidden="true"></i></button>
+
+
+                                        </td>
+
+
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row pull-right">
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button id="cancel" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script th:src="@{/space_static/plugins/jquery/jquery-3.1.0.min.js}"></script>
+    <script th:src="@{/custom/js/basic_form_script.js}"></script>
+    <script th:src="@{/custom/js/purchase_entry.js}"></script>
+</div>
+
+
+</body>
+
+</html>

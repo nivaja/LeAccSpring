@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns:layout="http://www.ultraq.net.nz.thymeleaf/layout"
+      layout:decorate="~{fragment/main_layout}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Responsive Admin Dashboard Template">
+    <meta name="keywords" content="admin,dashboard">
+    <meta name="author" content="stacks">
+    <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <link rel="stylesheet" th:href="@{/bootstrap4/css/bootstrap.css}">
+
+    <style type="text/css">
+        th{
+            color: black;
+            margin-left: 10%;
+        }
+    </style>
+    <!-- Title -->
+    <title>Employee</title>
+
+    <!-- Styles -->
+</head>
+
+<body>
+
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col pull-left">
+            <h3>Employee</h3>
+        </div>
+
+    </div>
+    <div id="main-wrapper">
+
+        <div class="row">
+
+            <div class="col-lg col-md-6 col-sm-6 mb-4">
+                <div class="stats-small stats-small--1 card card-small">
+                    <div class="card-body p-0 d-flex">
+                        <div class="d-flex flex-column m-auto">
+                            <div class="stats-small__data text-center">
+                                <span class="stats-small__label text-uppercase">Average Sales</span>
+                                <h6 class="stats-small__value count my-3">2,390</h6>
+                            </div>
+                            <div class="stats-small__data">
+                                <span class="stats-small__percentage stats-small__percentage--increase">4.7%</span>
+                            </div>
+                        </div>
+                        <canvas height="120" class="blog-overview-stats-small-1"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg col-md-6 col-sm-6 mb-4">
+                <div class="stats-small stats-small--1 card card-small">
+                    <div class="card-body p-0 d-flex">
+                        <div class="d-flex flex-column m-auto">
+                            <div class="stats-small__data text-center">
+                                <span class="stats-small__label text-uppercase">Average Income</span>
+                                <h6 class="stats-small__value count my-3">182</h6>
+                            </div>
+                            <div class="stats-small__data">
+                                <span class="stats-small__percentage stats-small__percentage--increase">12.4%</span>
+                            </div>
+                        </div>
+                        <canvas height="120" class="blog-overview-stats-small-2"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg col-md-4 col-sm-6 mb-4">
+                <div class="stats-small stats-small--1 card card-small">
+                    <div class="card-body p-0 d-flex">
+                        <div class="d-flex flex-column m-auto">
+                            <div class="stats-small__data text-center">
+                                <span class="stats-small__label text-uppercase">Total Employee</span>
+                                <h6 class="stats-small__value count my-3">8,147</h6>
+                            </div>
+                            <div class="stats-small__data">
+                                <span class="stats-small__percentage stats-small__percentage--decrease">3.8%</span>
+                            </div>
+                        </div>
+                        <canvas height="120" class="blog-overview-stats-small-3"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg col-md-4 col-sm-6 mb-4">
+                <div class="stats-small stats-small--1 card card-small">
+                    <div class="card-body p-0 d-flex">
+                        <div class="d-flex flex-column m-auto">
+                            <div class="stats-small__data text-center">
+                                <span class="stats-small__label text-uppercase">Highest Income</span>
+                                <h6 class="stats-small__value count my-3">2,413</h6>
+                            </div>
+                            <div class="stats-small__data">
+                                <span class="stats-small__percentage stats-small__percentage--increase">12.4%</span>
+                            </div>
+                        </div>
+                        <canvas height="120" class="blog-overview-stats-small-4"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg col-md-4 col-sm-12 mb-4">
+                <div class="stats-small stats-small--1 card card-small">
+                    <div class="card-body p-0 d-flex">
+                        <div class="d-flex flex-column m-auto">
+                            <div class="stats-small__data text-center">
+                                <span class="stats-small__label text-uppercase">Highest Sales</span>
+                                <h6 class="stats-small__value count my-3">17,281</h6>
+                            </div>
+                            <div class="stats-small__data">
+                                <span class="stats-small__percentage stats-small__percentage--decrease">2.4%</span>
+                            </div>
+                        </div>
+                        <canvas height="120" class="blog-overview-stats-small-5"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <!-- Users Stats -->
+            <div class="col-12 mb-4">
+                <div class="card">
+                    <div class="card-body pt-0" style="margin-top: 1.2rem;">
+                        <!--HEADER TEXT-->
+                        <div class="row">
+                            <div class="col-md-4 text-left">
+                                <h5>All Employee</h5>
+                            </div>
+                            <div class="col-md-4 offset-md-4 text-right">
+                                <button class="btn btn-link" data-toggle="modal" data-target="#myModal"><strong>Add new Employee</strong></button>
+                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+
+                                        <div th:include="fragment/employee_modal :: employee_modal"></div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--TABLE START-->
+                        <div class="table-responsive invoice-table">
+                            <table class="table table-hover">
+                                <thead class="bg-light">
+                                <tr>
+                                    <th scope="col">Sn</th>
+                                    <th scope="col">Product</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Rate</th>
+                                    <th scope="col">Amount</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th scope="row">0567</th>
+                                    <td>Kenny Highland</td>
+                                    <td>Themeforest</td>
+                                    <td><span class="label label-success">Finished</span></td>
+                                    <td>$427</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">0186</th>
+                                    <td>Darrell Price</td>
+                                    <td>Twitter</td>
+                                    <td><span class="label label-success">Finished</span></td>
+                                    <td>$1714</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">0712</th>
+                                    <td>Richard Lunsford</td>
+                                    <td>Facebook</td>
+                                    <td><span class="label label-danger">Denied</span></td>
+                                    <td>$685</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">0095</th>
+                                    <td>Amy Walker</td>
+                                    <td>Youtube</td>
+                                    <td><span class="label label-warning">Pending</span></td>
+                                    <td>$9900</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">1054</th>
+                                    <td>Kathy Olson</td>
+                                    <td>Youtube</td>
+                                    <td><span class="label label-default">Upcoming</span></td>
+                                    <td>$1250</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">0043</th>
+                                    <td>Susan Mabry</td>
+                                    <td>Instagram</td>
+                                    <td><span class="label label-default">Upcoming</span></td>
+                                    <td>$399</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- End Purchase By Employee Stats -->
+
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+</html>
