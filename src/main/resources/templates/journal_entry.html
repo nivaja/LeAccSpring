@@ -32,42 +32,20 @@
                 <div class="card">
                     <div class="card-body pt-0" style="margin-top: 1.2rem;">
 
-                        <form id="voucherRecieptForm">
+                        <form id="journalEntryForm">
                             <div class="form-row">
                                 <div class="col-6">
                                     <label>Transaction Date</label>
                                     <input name="date" type="date" class="form-control" placeholder="04/14/2075">
                                 </div>
                                 <div class="col-6">
-                                    <label>Journal-No</label>
-                                    <input name="billNo" type="text" class="form-control" placeholder="Bill-No">
+                                    <label>Journal No</label>
+                                    <input name="journalNo" type="text" class="form-control" placeholder="Bill-No">
                                 </div>
 
                             </div>
+
                             <div class="form-row">
-                                <div class="col">
-                                    <label>Cash / Bank</label>
-                                    <select name="cashSubAccount" class="form-control product" required>
-                                        <th:block th:each="cashSubAccount : ${cashSubAccounts}">
-                                            <option th:value="${cashSubAccount.getSubAccountId()}" th:text="${cashSubAccount.getSubAccountDescription()}">
-
-                                            </option>
-                                        </th:block>
-                                    </select>
-                                </div>
-
-                                <div class="col">
-                                    <label>Balance</label>
-                                    <input type="text" class="form-control" placeholder="Rs 54654" disabled>
-                                </div>
-
-                            </div>
-                            <div class="form-row">
-                                <div class="col">
-                                    <label>Cheque No</label>
-                                    <input name="chequeNo" type="text" class="form-control" placeholder="Cheque No">
-                                </div>
-
                                 <div class="col">
                                     <label>Description</label>
                                     <input name="description" type="text" class="form-control" placeholder="Description">
@@ -110,7 +88,10 @@
                                                   </select>
                                               </td>
                                               <td>
-                                                  <input type="text" class="form-control" placeholder="Debit Amount">
+                                                  <input type="text" class="form-control debitAmount" placeholder="Debit Amount">
+                                              </td>
+                                              <td>
+                                                  <input type="text" class="form-control creditAmount" placeholder="Credit Amount">
                                               </td>
                                               <td>
                                                   <input type="text" class="form-control" placeholder="Remarks">
@@ -146,7 +127,7 @@
     </div>
     <script th:src="@{/space_static/plugins/jquery/jquery-3.1.0.min.js}"></script>
     <script th:src="@{/custom/js/basic_form_script.js}"></script>
-    <script th:src="@{/custom/js/voucher_reciept_entry.js}"></script>
+    <script th:src="@{/custom/js/journal_entry.js}"></script>
 </div>
 
 </body>

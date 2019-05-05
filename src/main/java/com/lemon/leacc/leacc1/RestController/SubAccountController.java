@@ -1,6 +1,8 @@
 package com.lemon.leacc.leacc1.RestController;
 
+import com.lemon.leacc.leacc1.Auth.SessionService;
 import com.lemon.leacc.leacc1.Model.SubAccount;
+import com.lemon.leacc.leacc1.RestRepo.AccountRepo;
 import com.lemon.leacc.leacc1.RestRepo.SubAccountRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +16,10 @@ import java.util.Optional;
 public class SubAccountController {
     @Autowired
     private SubAccountRepo SubAccountRepo;
+    @Autowired
+    private AccountRepo accountRepo;
+    @Autowired
+    private SessionService sessionService;
 
     @GetMapping("/all")
     public List<SubAccount> allSubAccount(){
@@ -29,9 +35,11 @@ public class SubAccountController {
         return SubAccount;
     }
 
-    @PostMapping("/addSubAccount")
-    public void addSubAccount(@RequestBody SubAccount SubAccount){
-        SubAccountRepo.save(SubAccount);
+    @PostMapping("/add")
+    public void addSubAccount(@RequestBody SubAccount subAccount){
+        subAccount.setFiscalAccount(sessionService.getCurrentUserSession().getFiscalAccount());
+        subAccount.setAccount(accountRepo.getOne(subAccount.getAccount().getAccountId()));
+        SubAccountRepo.save(subAccount);
     }
 
     @PutMapping("/put/{id}")

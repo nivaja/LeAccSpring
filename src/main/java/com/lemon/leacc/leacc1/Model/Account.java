@@ -24,6 +24,11 @@ public class Account implements Serializable{
     @OneToMany(mappedBy = "account",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<SubAccount> subAccounts;
 
+//    @ManyToOne
+//    @JsonBackReference
+//    @JoinColumn(name = "account_type_group_id")
+//    private AccountTypeGroup accountTypeGroup;
+
     @JsonBackReference(value = "fiscalAccount")
     @ManyToOne
     @JoinColumn(name = "fiscal_account_id")

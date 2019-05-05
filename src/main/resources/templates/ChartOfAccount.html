@@ -12,10 +12,27 @@
     <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <style type="text/css">
-        th{
-          color: black;
-          margin-left: 10%;
+        .header{
+            background-color: #e0e7eb;
+            padding: 1%;
+            color: #1c252c;
+            font-weight: bold;
+            font-size: 16px;
         }
+
+        .body{
+            padding: 2% 5%;
+            border-bottom: 1px solid #d4dde3;
+        }
+
+        .body:hover {
+            background-color: #f2f5f7 ;
+        }
+
+        .footer{
+            padding: 1% 4%;
+        }
+
     </style>
     <!-- Title -->
     <title>Invoice</title>
@@ -59,38 +76,29 @@
                                     <li role="presentation"><a href="#tab24" role="tab" data-toggle="tab">Income</a></li>
                                     <li role="presentation"><a href="#tab25" role="tab" data-toggle="tab">Expense</a></li>
                                 </ul>
+                                <div class="modal fade" id="SubAccountModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+
+                                        <div th:include="fragment/add_sub_account_modal :: add_sub_account_modal"></div>
+
+
+                                    </div>
+                                </div>
                                 <!-- Tab panes -->
                                 <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane active fade in" id="tab21">
 
                                         <div style="margin-top: 1.5rem;" >
-                                            <table class="table table-hover table-responsive">
+                                            <div class="container">
+                                                <th:block th:each="account : ${accounts}">
+                                                    <div class="header" th:text="${account.getAccountDescription()}"></div>
+                                                    <th:block th:each="sub_account : ${account.getSubAccounts()}">
 
-                                                <thead style="background-color:  #0070E0; color: red ">
-                                                <tr>
-                                                    <th scope="col">Account</th>
-                                                    <th></th>
-                                                </tr>
-                                                </thead>
-                                                <tbody style="margin-left: 3rem;">
-                                                <tr>
-                                                    <th scope="row" size="color:black;">Sub Account</th>
-                                                    <td>
-
-                                                    </td>
-
-
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">
-
-                                                        <a class="nav-link"><strong>Add new Account</strong></a>
-                                                    </th>
-                                                    <td></td>
-
-                                                </tr>
-                                                </tbody>
-                                            </table>
+                                                        <div class="body" th:text="${sub_account.getSubAccountDescription()}"></div>
+                                                    </th:block>
+                                                    <div class="footer"> <button class="btn btn-link btn-lg" data-toggle="modal" data-target="#SubAccountModal"><strong>Add Sub Account</strong></button></div>
+                                                </th:block>
+                                            </div>
                                         </div>
                                     </div>
                                     <div role="tabpanel" class="tab-pane fade" id="tab22">

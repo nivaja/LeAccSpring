@@ -122,6 +122,16 @@
 
                     <li>
                         <a href="javascript:void(0)">
+                            <i class="menu-icon icon-flash_on"></i><span>Journal</span><i class="accordion-icon fa fa-angle-left"></i>
+                        </a>
+                        <ul class="sub-menu">
+                            <li><a th:href="@{/journal/entry}">Entry</a></li>
+                            <li><a th:href="@{/journal/details}">Details</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="javascript:void(0)">
                             <i class="menu-icon icon-flash_on"></i><span>Transport</span><i class="accordion-icon fa fa-angle-left"></i>
                         </a>
                         <ul class="sub-menu">
@@ -156,7 +166,7 @@
                         </a>
                         <ul class="sub-menu">
                             <li><a href="maps-google.html">Balance Sheet</a></li>
-                            <li><a href="maps-vector.html">Profit and Loss</a></li>
+                            <li><a th:href="@{/report/profitAndLoss}">Profit and Loss</a></li>
                             <li><a href="maps-vector.html">Cash Flow</a></li>
                             <li><a href="maps-vector.html">Trail Balance</a></li>
                             <li><a href="maps-vector.html">Legder</a></li>

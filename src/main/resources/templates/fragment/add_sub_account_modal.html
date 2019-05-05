@@ -1,10 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+
+
+<div th:fragment="add_sub_account_modal">
+    <div class="card modal-content" style="margin: 3%;">
+        <div class="card-header border-bottom">
+            <div class="row">
+                <div class="col-6 text-left">
+                    <h6 class="m-0">Add Sub Account</h6>
+                </div>
+                <div class="col-6 text-right">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                </div>
+            </div>
+        </div>
+        <div class="card-body" style="padding: 5%;">
+            <form id="subAccountForm">
+
+
+                <div class="form-row">
+                    <label>Account Description</label>
+                    <select name="account" id="account"  class="form-control">
+                        <th:block th:each="account : ${accounts}">
+                            <option th:value="${account.getAccountId()}" th:text="${#strings.capitalizeWords(account.getAccountDescription())}">
+
+                            </option>
+                        </th:block>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label>Sub Account Description</label>
+                    <input name="subAccountDescription" type="text" class="form-control" placeholder="Sub Account Description">
+                </div>
+
+
+                <div class="dropdown-divider"></div>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button id="cancel" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script th:src="@{/space_static/plugins/jquery/jquery-3.1.0.min.js}"></script>
+
+    <script th:src="@{/custom/js/add_sub_account.js}"></script>
+</div>

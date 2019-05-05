@@ -68,9 +68,15 @@ public class IndexController {
 
     @Autowired
     AccountTypeRepo accountTypeRepo;
+    @Autowired
+    AccountRepo accountRepo;
+
     @GetMapping("/coa")
     public String coa(Model model){
+       // model.addAttribute("accountTypeGroups",accountTypeGroupRepo.findAll());
         model.addAttribute("accountTypes",accountTypeRepo.findAll());
+        model.addAttribute("accounts",accountRepo.findByFiscalAccount(sessionService.getCurrentUserSession().getFiscalAccount()));
+
         return "chartOfAccount";
     }
 
@@ -114,8 +120,6 @@ public class IndexController {
     }
 
     @Autowired
-    AccountRepo accountRepo;
-    @Autowired
     SubAccountRepo subAccountRepo;
     @RequestMapping("/voucher/payment")
     public String voucherPayment(Model model){
@@ -144,6 +148,16 @@ public class IndexController {
         return "voucher_reciept_entry";
     }
 
+    @RequestMapping("/journal/entry")
+    public String journalEntry(Model model) {
+        FiscalAccount fiscalAccount =sessionService.getCurrentUserSession().getFiscalAccount();
+        List<Account> accounts = accountRepo.findByFiscalAccount(fiscalAccount);
+        List<SubAccount> subAccounts = subAccountRepo.findByFiscalAccount(fiscalAccount);
+
+        model.addAttribute("subAccounts",subAccounts);
+        model.addAttribute("accounts",accounts);
+        return "journal_entry";
+    }
     @RequestMapping("/vehicle/fuel")
     public String vehicleFuel(Model model){
         List<Vehicle> vehicles = vehicleRepo.getByFiscalAccount(sessionService.getCurrentUserSession().getFiscalAccount());
@@ -181,6 +195,10 @@ public class IndexController {
         model.addAttribute("products",products);
         model.addAttribute("godowns",godowns) ;
         return "finished_good_entry";
+    }
+    @RequestMapping("report/profitAndLoss")
+    public String profitAndLoss(Model model){
+        return "profit_and_loss_report";
     }
 
     @RequestMapping("/setting/company_date_setting")

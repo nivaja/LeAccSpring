@@ -17,19 +17,31 @@ public class Journal implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date transactionDate;
 
+    private String journalNo;
+    private String description;
+
+
     @JsonBackReference(value = "journalCredits")
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "journal")
     private List<JournalCredit> journalCredits;
 
     @JsonIgnore
     @JsonBackReference(value = "journalDebits")
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "journal")
     private List<JournalDebit> journalDebits;
 
     @JsonBackReference(value = "fiscalAccount")
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fiscal_account_id")
     private FiscalAccount fiscalAccount;
+
+    public String getJournalNo() {
+        return journalNo;
+    }
+
+    public void setJournalNo(String journalNo) {
+        this.journalNo = journalNo;
+    }
 
     public int getJournalId() {
         return journalId;
@@ -37,6 +49,14 @@ public class Journal implements Serializable {
 
     public void setJournalId(int journalId) {
         this.journalId = journalId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Date getTransactionDate() {
