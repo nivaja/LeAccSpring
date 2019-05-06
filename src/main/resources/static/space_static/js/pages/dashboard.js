@@ -35,15 +35,7 @@ function stream_waves(n, m) {
 function stream_index(d, i) {
   return {x: i, y: Math.max(0, d)};
 };
-    var nvddata1 = function() {
-        return stream_layers(3,10+Math.random()*100,.1).map(function(data, i) {
-            var a = i + 1;
-            return {
-                key: 'Product' + a,
-                values: data
-            };
-        });
-    };
+    var nvddata1 = [1,2,3];
 
 
     nv.addGraph(function() {
@@ -57,7 +49,7 @@ function stream_index(d, i) {
         .tickFormat(d3.format(',.1f'));
 
     d3.select('#chart1 svg')
-        .datum(nvddata1())
+        .datum(nvddata1)
         .transition().duration(500)
         .call(chart)
         ;

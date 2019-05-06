@@ -19,7 +19,7 @@ $(function(){
 });
 function getAccount() {
     var data= {
-        accountTypeGroup:{accountTypeGroupId:$("#accountTypeGroup").val()},
+       // accountTypeGroup:{accountTypeGroupId:$("#accountTypeGroup").val()},
         accountType:{accountTypeId:$("#accountType").val()},
         accountDescription:$("input[name='accountDescription']").val()
     };

@@ -1,6 +1,8 @@
 package com.lemon.leacc.leacc1.WebController;
 
 import com.lemon.leacc.leacc1.Auth.*;
+import com.lemon.leacc.leacc1.BussinessLogic.Dashboard;
+import com.lemon.leacc.leacc1.BussinessLogic.ProfitAndLoss;
 import com.lemon.leacc.leacc1.BussinessLogic.StockLedger;
 import com.lemon.leacc.leacc1.Model.*;
 import com.lemon.leacc.leacc1.RestRepo.*;
@@ -39,7 +41,7 @@ public class IndexController {
 
     @PreAuthorize("hasAnyRole('SALES','COMPANY','ADMIN')")
     @RequestMapping("/dashboard")
-    public String dashboard(){
+    public String dashboard(Model model){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserPrincipal authUser = (UserPrincipal) auth.getPrincipal();
         Optional<User> optionalUser = userRepo.findByUsername(authUser.getUsername());
@@ -47,7 +49,7 @@ public class IndexController {
             throw  new RuntimeException("USER NOT FOUND");
         }
         User user=  optionalUser.get();
-
+        model.addAttribute("dashboard",new Dashboard(sessionService.getCurrentUserSession().getFiscalAccount()));
         System.out.println(user.getUsername()+", "+user.getCompany().getCompanyId());
         return "dashboard";
     }
@@ -197,7 +199,9 @@ public class IndexController {
         return "finished_good_entry";
     }
     @RequestMapping("report/profitAndLoss")
-    public String profitAndLoss(Model model){
+    public String profitAndLoss(Model model)
+    {
+        model.addAttribute("profitAndLoss",new ProfitAndLoss(sessionService.getCurrentUserSession().getFiscalAccount()));
         return "profit_and_loss_report";
     }
 

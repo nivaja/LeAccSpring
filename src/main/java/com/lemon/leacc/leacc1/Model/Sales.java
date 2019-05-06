@@ -68,6 +68,8 @@ public class Sales implements Serializable {
         }
         return sum;
     }
+
+
     public int getSalesId() {
         return SalesId;
     }

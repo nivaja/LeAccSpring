@@ -134,4 +134,25 @@ public class Purchase implements Serializable {
                 ", fiscalAccount=" + fiscalAccount +
                 '}';
     }
+
+
+    public String getVehicleDescription() {
+        return this.getVehicle().getVehicleModel()+" || "+this.getVehicle().getPlateNumber();
+    }
+
+    public String getProducts(){
+        String products="";
+        for (PurchaseProduct pro:this.getPurchaseProducts()) {
+            products+=", "+pro.getProduct().getProductDescription();
+        }
+        return products;
+    }
+
+    public double getTotalAmount(){
+        double sum=0;
+        for (PurchaseProduct pro:this.getPurchaseProducts()) {
+            sum+=pro.getAmount();
+        }
+        return sum;
+    }
 }

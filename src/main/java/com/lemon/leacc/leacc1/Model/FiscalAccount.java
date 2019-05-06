@@ -38,12 +38,79 @@ public class FiscalAccount implements Serializable {
 //    @OneToMany(mappedBy = "fiscalAccount")
 //    private List<Vendor> vendors;
 
-//    @JsonIgnore
-//    @OneToMany(mappedBy = "fiscalAccount")
-//    private List<Sales> sales;
+    @JsonIgnore
+    @OneToMany(mappedBy = "fiscalAccount")
+    private List<Sales> sales;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "fiscalAccount")
+    private List<Payment> payments;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "fiscalAccount")
+    private List<Reciept> reciepts;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "fiscalAccount")
+    private List<FinishedGoodEntry> finishedGoodEntries;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "fiscalAccount")
+    private List<Customer> customers;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "fiscalAccount")
+    private List<Purchase> purchases;
 
 
+    public List<Purchase> getPurchases() {
+        return purchases;
+    }
 
+    public void setPurchases(List<Purchase> purchases) {
+        this.purchases = purchases;
+    }
+
+    public List<FinishedGoodEntry> getFinishedGoodEntries() {
+        return finishedGoodEntries;
+    }
+
+
+    public void setFinishedGoodEntries(List<FinishedGoodEntry> finishedGoodEntries) {
+        this.finishedGoodEntries = finishedGoodEntries;
+    }
+
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
+    }
+
+    public int getFiscalAccountId() {
+        return fiscalAccountId;
+    }
+
+    public void setFiscalAccountId(int fiscalAccountId) {
+        this.fiscalAccountId = fiscalAccountId;
+    }
+
+    public List<Reciept> getReciepts() {
+        return reciepts;
+    }
+
+    public void setReciepts(List<Reciept> reciepts) {
+        this.reciepts = reciepts;
+    }
+
+    public List<Payment> getPayments() {
+        return payments;
+    }
+
+    public void setPayments(List<Payment> payments) {
+        this.payments = payments;
+    }
 
     public int getFisacalAccountId() {
         return fiscalAccountId;
@@ -109,11 +176,11 @@ public class FiscalAccount implements Serializable {
 //        this.vendors = vendors;
 //    }
 
-//    public List<Sales> getSales() {
-//        return sales;
-//    }
-//
-//    public void setSales(List<Sales> sales) {
-//        this.sales = sales;
-//    }
+    public List<Sales> getSales() {
+        return sales;
+    }
+
+    public void setSales(List<Sales> sales) {
+        this.sales = sales;
+    }
 }

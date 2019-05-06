@@ -3,6 +3,7 @@ package com.lemon.leacc.leacc1.RestController;
 import com.lemon.leacc.leacc1.Auth.SessionService;
 import com.lemon.leacc.leacc1.Model.Account;
 import com.lemon.leacc.leacc1.RestRepo.AccountRepo;
+import com.lemon.leacc.leacc1.RestRepo.AccountTypeRepo;
 import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,9 @@ public class AccountController {
     private AccountRepo accountRepo;
 
     @Autowired
+    private AccountTypeRepo accountTypeRepo;
+
+    @Autowired
     private SessionService sessionService;
 
     @GetMapping("/all")
@@ -37,8 +41,9 @@ public class AccountController {
         return account;
     }
 
-    @PostMapping(value="/add",consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value="/add")
     public void add(@RequestBody Account account){
+        account.setAccountType(accountTypeRepo.getOne(account.getAccountType().getAccountTypeId()));
         account.setFiscalAccount(sessionService.getCurrentUserSession().getFiscalAccount());
         accountRepo.save(account);
     }
