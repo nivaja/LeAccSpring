@@ -20,10 +20,7 @@ public class PurchaseProduct implements Serializable {
     private Product product;
 
 
-    @ManyToOne
-    @JsonBackReference(value = "godown")
-    @JoinColumn(name = "godown_id")
-    private Godown godown;
+
 
     @NotNull
     private double quantity;
@@ -56,13 +53,6 @@ public class PurchaseProduct implements Serializable {
         this.product = product;
     }
 
-    public Godown getGodown() {
-        return godown;
-    }
-
-    public void setGodown(Godown godown) {
-        this.godown = godown;
-    }
 
     public double getQuantity() {
         return quantity;

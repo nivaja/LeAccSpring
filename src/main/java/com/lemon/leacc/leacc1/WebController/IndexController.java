@@ -198,25 +198,7 @@ public class IndexController {
         return "vehicle_part_entry";
     }
 
-    @Autowired
-    GodownRepo godownRepo;
-    @RequestMapping("/inventory/transfer")
-    public String inventoryTransfer(Model model){
-        List<Product> products =productRepo.getByFiscalAccount(sessionService.getCurrentUserSession().getFiscalAccount());
-        List<Godown> godowns =godownRepo.getByFiscalAccount(sessionService.getCurrentUserSession().getFiscalAccount());
-        model.addAttribute("products",products);
-        model.addAttribute("godowns",godowns) ;
-        return "inventory_transfer_entry";
-    }
 
-    @RequestMapping("/production/finished_good_entry")
-    public String finishedGoodEntry(Model model){
-        List<Product> products =productRepo.getByFiscalAccount(sessionService.getCurrentUserSession().getFiscalAccount());
-        List<Godown> godowns =godownRepo.getByFiscalAccount(sessionService.getCurrentUserSession().getFiscalAccount());
-        model.addAttribute("products",products);
-        model.addAttribute("godowns",godowns) ;
-        return "finished_good_entry";
-    }
     @RequestMapping("report/profitAndLoss")
     public String profitAndLoss(Model model)
     {
@@ -241,28 +223,26 @@ public class IndexController {
         model.addAttribute("customers",customerRepo.getByFiscalAccount(sessionService.getCurrentUserSession().getFiscalAccount()));
         return "customer";
     }
-
+@Autowired
+VoucherPaymentRepo voucherPaymentRepo;
+    @Autowired
+    VoucherRecieptRepo voucherRecieptRepo;
     @RequestMapping("/voucher/detail")
     public String voucherDetail(Model model){
-        //model.addAttribute("customers",customerRepo.getByFiscalAccount(sessionService.getCurrentUserSession().getFiscalAccount()));
+        model.addAttribute("payments",voucherPaymentRepo.findByFiscalAccount(sessionService.getCurrentUserSession().getFiscalAccount()));
+        model.addAttribute("reciepts",voucherRecieptRepo.findByFiscalAccount(sessionService.getCurrentUserSession().getFiscalAccount()));
         return "voucher_detail";
     }
 
 
     @RequestMapping("/inventory/detail")
     public String inventoryDetail(Model model){
-        //model.addAttribute("customers",customerRepo.getByFiscalAccount(sessionService.getCurrentUserSession().getFiscalAccount()));
         return "inventory_detail";
     }
-//    @RequestMapping("/reports/ledger")
-//    public String ledger(Model model){
-//        model.addAttribute("accounts",acco    untRepo.findByFiscalAccount(sessionService.getCurrentUserSession().getFiscalAccount()));
-//        return "ledger";
-//    }
+
 
     @RequestMapping("/reports/cashbook")
     public String cashBook(Model model){
-        //model.addAttribute("customers",customerRepo.getByFiscalAccount(sessionService.getCurrentUserSession().getFiscalAccount()));
         return "cash_book";
     }
 
@@ -316,9 +296,6 @@ public class IndexController {
 
         return "stock_ledger";
     }
-
-
-
 
 
     @RequestMapping("/logout")

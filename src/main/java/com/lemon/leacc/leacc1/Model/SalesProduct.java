@@ -17,10 +17,7 @@ public class SalesProduct implements Serializable {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    @ManyToOne
-    @JsonBackReference(value = "godown")
-    @JoinColumn(name = "godown_id")
-    private Godown godown;
+
 
     @NotNull
     private double quantity;
@@ -54,13 +51,7 @@ public class SalesProduct implements Serializable {
         this.product = product;
     }
 
-    public Godown getGodown() {
-        return godown;
-    }
 
-    public void setGodown(Godown godown) {
-        this.godown = godown;
-    }
 
     public double getQuantity() {
         return quantity;

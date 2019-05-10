@@ -17,6 +17,7 @@ public class Reciept implements Serializable {
 
     @Temporal(TemporalType.DATE)
     private Date date;
+    private String billNo;
 
 
 
@@ -52,7 +53,13 @@ public class Reciept implements Serializable {
         this.date = date;
     }
 
+    public String getBillNo() {
+        return billNo;
+    }
 
+    public void setBillNo(String billNo) {
+        this.billNo = billNo;
+    }
 
     public SubAccount getCashSubAccount() {
         return cashSubAccount;

@@ -1,7 +1,6 @@
 package com.lemon.leacc.leacc1.BussinessLogic;
 
 import com.lemon.leacc.leacc1.BussinessLogic.BusinessModel.StockLegderModel;
-import com.lemon.leacc.leacc1.Model.FinishedGoodEntryProducts;
 import com.lemon.leacc.leacc1.Model.Product;
 import com.lemon.leacc.leacc1.Model.PurchaseProduct;
 import com.lemon.leacc.leacc1.Model.SalesProduct;
@@ -20,14 +19,11 @@ public class StockLedger {
     @Autowired
     PurchaseProductRepo purchaseProductRepo;
 
-    @Autowired
-    FinishedGoodEntryProductsRepo finishedGoodEntryProductsRepo;
 
 
     public List<StockLegderModel> generateStockLedgerByProduct(Product product){
         List<SalesProduct> fromSales = salesProductRepo.findByProduct(product);
         List<PurchaseProduct> fromPurchase = purchaseProductRepo.findByProduct(product);
-        List<FinishedGoodEntryProducts> fromFinishedGood = finishedGoodEntryProductsRepo.findByProduct(product);
 
 
 
@@ -41,13 +37,7 @@ public class StockLedger {
             }
         );
 
-        fromFinishedGood.forEach(item->{
-            StockLegderModel stockLegderModel = new StockLegderModel();
-            stockLegderModel.setDate(item.getFinishedGoodEntry().getDate());
-            stockLegderModel.setReceivedQuantity(item.getQuantity());
-            stockLegderModel.setParticular("FROM Finished Good" +"[" +item.getFinishedGoodEntry().getBillNo()+"] "+item.getFinishedGoodEntry().getDescription());
-            stockLegderModels.add(stockLegderModel);
-        });
+
 
         fromSales.forEach(item->{
             StockLegderModel stockLegderModel = new StockLegderModel();
