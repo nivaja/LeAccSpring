@@ -14,7 +14,6 @@ public class Product implements Serializable {
     private String ProductDescription;
     private String uom;
     private double price;
-    private String productType;
     private double stockLimit;
 
     @JsonBackReference(value = "fiscalAccount")
@@ -54,13 +53,7 @@ public class Product implements Serializable {
         this.price = price;
     }
 
-    public String getProductType() {
-        return productType;
-    }
 
-    public void setProductType(String productType) {
-        this.productType = productType;
-    }
 
     public double getStockLimit() {
         return stockLimit;

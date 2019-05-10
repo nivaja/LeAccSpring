@@ -112,23 +112,20 @@
 
 
     //
-    //MONTHLY PRODUCTION VS SALES
+    // Blog Overview Users
     //
+
     var bouCtx = document.getElementsByClassName('blog-overview-users')[0];
 
     // Data
-var graphData=null;
-      $.getJSON("http://localhost:8000/api/graph/productionVsSales", function(data){
-          console.log(data);
-          graphData=data;
-
     var bouData = {
       // Generate the days labels on the X axis.
-      labels: data.date,
+      labels:  [ "January", "February", "March", "April", "May", "June",
+          "July", "August", "September", "October", "November", "December" ],
       datasets: [{
         label: 'Sales',
         fill: 'start',
-        data: data.sales,
+        data: [500, 800, 320, 180, 240, 320, 230, 650, 590, 1200, 750, 940],
         backgroundColor: 'rgba(0,123,255,0.1)',
         borderColor: 'rgba(0,123,255,1)',
         pointBackgroundColor: '#ffffff',
@@ -136,22 +133,8 @@ var graphData=null;
         borderWidth: 1.5,
         pointRadius: 0,
         pointHoverRadius: 3
-      }, {
-        label: 'Production',
-        fill: 'start',
-        data: data.production,
-        backgroundColor: 'rgba(255,65,105,0.1)',
-        borderColor: 'rgba(255,65,105,1)',
-        pointBackgroundColor: '#ffffff',
-        pointHoverBackgroundColor: 'rgba(255,65,105,1)',
-        borderDash: [3, 3],
-        borderWidth: 1,
-        pointRadius: 0,
-        pointHoverRadius: 2,
-        pointBorderColor: 'rgba(255,65,105,1)'
       }]
     };
-
 
     // Options
     var bouOptions = {
@@ -174,7 +157,7 @@ var graphData=null;
           ticks: {
             callback: function (tick, index) {
               // Jump every 7 values on the X axis labels to avoid clutter.
-              return index % 7 !== 0 ? '' : tick;
+              return index % 1 !== 0 ? '' : tick;
             }
           }
         }],
@@ -227,21 +210,17 @@ var graphData=null;
     //
 
     // Data
-
-          $.getJSON("http://localhost:8000/api/graph/income", function(result){
-
-
     var ubdData = {
       datasets: [{
         hoverBorderColor: '#ffffff',
-        data: result.amount,
+        data: [68.3, 24.2, 7.5],
         backgroundColor: [
           'rgba(0,123,255,0.9)',
           'rgba(0,123,255,0.5)',
           'rgba(0,123,255,0.3)'
         ]
       }],
-      labels: result.lable
+      labels: ["Desktop", "Tablet", "Mobile"]
     };
 
     // Options
@@ -271,8 +250,6 @@ var graphData=null;
       data: ubdData,
       options: ubdOptions
     });
-          });
-      });
 
   });
 })(jQuery);

@@ -16,10 +16,12 @@ layout:decorate="~{fragment/main_layout}">
 
 
 
+
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.0/js/mdb.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.js"></script>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 
@@ -35,6 +37,7 @@ layout:decorate="~{fragment/main_layout}">
 <body>
 <div layout:fragment="content">
     <div class="page-title">
+        <div sec:authentication="principal.authorities"></div>
         <h3 class="breadcrumb-header">Dashboard</h3>
     </div>
     <div id="main-wrapper">
@@ -50,9 +53,7 @@ layout:decorate="~{fragment/main_layout}">
                                 <span class="stats-small__label text-uppercase">Sales</span>
                                 <h6 class="stats-small__value count my-3" th:text="${dashboard.sales()}"></h6>
                             </div>
-                            <div class="stats-small__data">
-                                <span class="stats-small__percentage stats-small__percentage--increase">4.7%</span>
-                            </div>
+
                         </div>
                         <canvas height="120" class="blog-overview-stats-small-1"></canvas>
                     </div>
@@ -66,9 +67,7 @@ layout:decorate="~{fragment/main_layout}">
                                 <span class="stats-small__label text-uppercase">Net Profit</span>
                                 <h6 class="stats-small__value count my-3" th:text="${dashboard.netProfit()}"></h6>
                             </div>
-                            <div class="stats-small__data">
-                                <span class="stats-small__percentage stats-small__percentage--increase">12.4%</span>
-                            </div>
+
                         </div>
                         <canvas height="120" class="blog-overview-stats-small-2"></canvas>
                     </div>
@@ -82,9 +81,7 @@ layout:decorate="~{fragment/main_layout}">
                                 <span class="stats-small__label text-uppercase">Income</span>
                                 <h6 class="stats-small__value count my-3" th:text="${dashboard.income()}"></h6>
                             </div>
-                            <div class="stats-small__data">
-                                <span class="stats-small__percentage stats-small__percentage--decrease">3.8%</span>
-                            </div>
+
                         </div>
                         <canvas height="120" class="blog-overview-stats-small-3"></canvas>
                     </div>
@@ -98,9 +95,7 @@ layout:decorate="~{fragment/main_layout}">
                                 <span class="stats-small__label text-uppercase">Expenses</span>
                                 <h6 class="stats-small__value count my-3" th:text="${dashboard.expenses()}"></h6>
                             </div>
-                            <div class="stats-small__data">
-                                <span class="stats-small__percentage stats-small__percentage--increase">12.4%</span>
-                            </div>
+
                         </div>
                         <canvas height="120" class="blog-overview-stats-small-4"></canvas>
                     </div>
@@ -114,9 +109,7 @@ layout:decorate="~{fragment/main_layout}">
                                 <span class="stats-small__label text-uppercase">Customer</span>
                                 <h6 class="stats-small__value count my-3" th:text="${dashboard.customer()}"></h6>
                             </div>
-                            <div class="stats-small__data">
-                                <span class="stats-small__percentage stats-small__percentage--decrease">2.4%</span>
-                            </div>
+
                         </div>
                         <canvas height="120" class="blog-overview-stats-small-5"></canvas>
                     </div>
@@ -130,7 +123,7 @@ layout:decorate="~{fragment/main_layout}">
             <div class="col-lg-8 col-md-12 col-sm-12 mb-4">
                 <div class="card card-small">
                     <div class="card-header border-bottom">
-                        <h6 class="m-0">Production vs Sales</h6>
+                        <h6 class="m-0">Monthly Sales</h6>
                     </div>
                     <div class="card-body pt-0">
 
@@ -164,8 +157,8 @@ console.log(data);
                                     labels: data.lable,
                                     datasets: [{
                                         data: data.amount,
-                                        backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
-                                        hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
+                                        backgroundColor: ["#bbdefb", "#42a5f5", "#1e88e5", "#949FB1", "#1565c0"],
+                                        hoverBackgroundColor: ["#90caf9", "#2196f3", "#1976d2", "#A8B3C5", "#0d47a1"]
                                     }]
                                 },
                                 options: {
@@ -192,9 +185,8 @@ console.log(data);
                     </div>
                     <div class="card-body pt-0">
 
-                        <div id="chart1" style="margin-top: 3%; width: 100%;"><svg></svg></div>
-
-                        <!-- <canvas height="130" style="max-width: 100% !important;" class="blog-overview-users"></canvas> -->
+                        <canvas id="salesByCustomer" height="380" style="margin-top: 3%; width: 100%;"></canvas>
+                        <script th:src="@{/custom/js/graphs/sales_by_customer.js}"></script>                        <!-- <canvas height="130" style="max-width: 100% !important;" class="blog-overview-users"></canvas> -->
                     </div>
                 </div>
             </div>
@@ -202,80 +194,17 @@ console.log(data);
 
         </div>
         <!-- Row -->
-        <!--PAYABLE AND RECIVABLES  -->
+        <!--Stock Summary  -->
         <div class="row">
             <div class="col-lg-8 col-md-12 col-sm-12 mb-4">
 
                 <div class="card">
                     <div class="card-header border-bottom">
-                        <h6 class="m-0">Payable & Reciveable</h6>
+                        <h6 class="m-0">Stock Summary</h6>
                     </div>
                     <div class="card-body pt-0">
-                        <div class="row border-bottom py-2 bg-light">
-                            <div class="col-12 col-sm-6">
-                                <div id="blog-overview-date-range" class="input-daterange input-group input-group-sm my-auto ml-auto mr-auto ml-sm-auto mr-sm-0" style="max-width: 350px;">
-                                    <input type="text" class="input-sm form-control" name="start" placeholder="Start Date" id="blog-overview-date-range-1">
-                                    <input type="text" class="input-sm form-control" name="end" placeholder="End Date" id="blog-overview-date-range-2">
-                                    <span class="input-group-append">
-                                            <span class="input-group-text">
-                                              <i class="material-icons"></i>
-                                            </span>
-                                                </span>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 d-flex mb-2 mb-sm-0">
-                                <button type="button" class="btn btn-sm btn-white ml-auto mr-auto ml-sm-auto mr-sm-0 mt-3 mt-sm-0">View Full Report &rarr;</button>
-                            </div>
-                        </div>
-
-                        <div class="table-responsive invoice-table">
-                            <table class="table">
-                                <tbody>
-                                <tr>
-                                    <th scope="row">0567</th>
-                                    <td>Kenny Highland</td>
-                                    <td>Themeforest</td>
-                                    <td><span class="label label-success">Finished</span></td>
-                                    <td>$427</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">0186</th>
-                                    <td>Darrell Price</td>
-                                    <td>Twitter</td>
-                                    <td><span class="label label-success">Finished</span></td>
-                                    <td>$1714</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">0712</th>
-                                    <td>Richard Lunsford</td>
-                                    <td>Facebook</td>
-                                    <td><span class="label label-danger">Denied</span></td>
-                                    <td>$685</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">0095</th>
-                                    <td>Amy Walker</td>
-                                    <td>Youtube</td>
-                                    <td><span class="label label-warning">Pending</span></td>
-                                    <td>$9900</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">1054</th>
-                                    <td>Kathy Olson</td>
-                                    <td>Youtube</td>
-                                    <td><span class="label label-default">Upcoming</span></td>
-                                    <td>$1250</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">0043</th>
-                                    <td>Susan Mabry</td>
-                                    <td>Instagram</td>
-                                    <td><span class="label label-default">Upcoming</span></td>
-                                    <td>$399</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        <canvas id="stockSummary"></canvas>
+                        <script th:src="@{/custom/js/graphs/stock_summary.js}"></script>
                     </div>
                 </div>
             </div>
@@ -285,238 +214,43 @@ console.log(data);
                 <div class="card card-small h-100">
                     <div class="card-header border-bottom">
                         <h6 class="m-0">Income Break Down</h6>
+
                     </div>
                     <div class="card-body d-flex py-0">
 
 
                         <!-- <canvas id="expense_breakdown"></canvas> -->
-                        <canvas height="280" class="blog-users-by-device m-auto"></canvas>
+                        <canvas height="280" id="incomeChart" class="m-auto"></canvas>
+                        <script>
+                            //doughnut
+                            $.getJSON("http://localhost:8000/api/graph/income", function(data){
+                                console.log(data);
+                                console.log(data.lable);
+                                console.log(data.amount);
+
+                                var ctxD = document.getElementById("incomeChart").getContext('2d');
+                                var income = new Chart(ctxD, {
+                                    type: 'doughnut',
+                                    data: {
+                                        labels: data.lable,
+                                        datasets: [{
+                                            data: data.amount,
+                                            backgroundColor: ["#bbdefb", "#42a5f5", "#1e88e5", "#949FB1", "#1565c0"],
+                                            hoverBackgroundColor: ["#90caf9", "#2196f3", "#1976d2", "#A8B3C5", "#0d47a1"]
+                                        }]
+                                    },
+                                    options: {
+                                        responsive: true
+                                    }
+                                });
+                            });
+                        </script>
                     </div>
 
                 </div>
             </div>
             <!-- End Income break down -->
         </div>
-
-        <div class="row">
-            <!-- Stock Summary -->
-            <div class="col-lg-5 col-md-12 mb-4">
-                <div class="card">
-                    <div class="card-header border-bottom">
-                        <h6 class="m-0">Stock Summary</h6>
-                    </div>
-                    <div class="card-body pt-0">
-                        <div class="row border-bottom py-2 bg-light">
-                            <div class="col-12 col-sm-6">
-                                <div id="blog-overview-date-range" class="input-daterange input-group input-group-sm my-auto ml-auto mr-auto ml-sm-auto mr-sm-0" style="max-width: 350px;">
-                                    <input type="text" class="input-sm form-control" name="start" placeholder="Start Date" id="blog-overview-date-range-1">
-                                    <input type="text" class="input-sm form-control" name="end" placeholder="End Date" id="blog-overview-date-range-2">
-                                    <span class="input-group-append">
-                                                    <span class="input-group-text">
-                                                      <i class="material-icons"></i>
-                                                    </span>
-                                                </span>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 d-flex mb-2 mb-sm-0">
-                                <button type="button" class="btn btn-sm btn-white ml-auto mr-auto ml-sm-auto mr-sm-0 mt-3 mt-sm-0">View Full Report &rarr;</button>
-                            </div>
-                        </div>
-
-                        <div class="table-responsive invoice-table">
-                            <table class="table">
-                                <tbody>
-                                <tr>
-                                    <th scope="row">0567</th>
-                                    <td>Kenny Highland</td>
-                                    <td>Themeforest</td>
-                                    <td><span class="label label-success">Finished</span></td>
-                                    <td>$427</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">0186</th>
-                                    <td>Darrell Price</td>
-                                    <td>Twitter</td>
-                                    <td><span class="label label-success">Finished</span></td>
-                                    <td>$1714</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">0712</th>
-                                    <td>Richard Lunsford</td>
-                                    <td>Facebook</td>
-                                    <td><span class="label label-danger">Denied</span></td>
-                                    <td>$685</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">0095</th>
-                                    <td>Amy Walker</td>
-                                    <td>Youtube</td>
-                                    <td><span class="label label-warning">Pending</span></td>
-                                    <td>$9900</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">1054</th>
-                                    <td>Kathy Olson</td>
-                                    <td>Youtube</td>
-                                    <td><span class="label label-default">Upcoming</span></td>
-                                    <td>$1250</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">0043</th>
-                                    <td>Susan Mabry</td>
-                                    <td>Instagram</td>
-                                    <td><span class="label label-default">Upcoming</span></td>
-                                    <td>$399</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- END STOCK SUMMARY -->
-            <div class="col-lg-7 col-md-12 mb-4">
-                <div class="card">
-                    <div class="card-header border-bottom">
-                        <h6 class="m-0">CashFlow Summary</h6>
-                    </div>
-                    <div class="card-body pt-0">
-                        <div class="row border-bottom py-2 bg-light">
-
-                            <div class="col-12 col-sm-6 d-flex mb-2 mb-sm-0">
-                                <button type="button" class="btn btn-sm btn-white ml-auto mr-auto ml-sm-auto mr-sm-0 mt-3 mt-sm-0">View Full Report &rarr;</button>
-                            </div>
-                        </div>
-                        <div id="chart1" style="margin-top: 3%; width: 100%;"><svg></svg></div>
-
-                        <!-- <canvas height="130" style="max-width: 100% !important;" class="blog-overview-users"></canvas> -->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Row -->
-        <div class="row mb-4">
-            <!-- SALES SUMMARY -->
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header border-bottom">
-                        <h6 class="m-0">Sales Summary</h6>
-                    </div>
-                    <div class="card-body pt-0">
-
-
-                        <div  class="table-responsive invoice-table">
-
-                            <script>
-                                $(document).ready(function(){
-                                    $('#salesTable').DataTable();
-                                });
-                            </script>
-                            <table id="salesTable" class="table table-hover">
-                                <thead class="bg-light">
-                                <tr>
-                                    <th>Bill No</th>
-                                    <th>Date</th>
-                                    <th>Description</th>
-                                    <th>Products</th>
-                                    <th>Sales Amount</th>
-                                    <th>Sales Agent</th>
-                                    <th>Vehicle</th>
-                                    <th>Start KM</th>
-                                    <th>End KM</th>
-
-
-
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <th:block th:each="sales : ${dashboard.salesSummary()}">
-                                    <tr>
-                                        <th> <a th:href="@{'#'}" th:text="${sales.getBillNo()}"></a></th>
-
-                                        <td th:text="${sales.getDate()}"></td>
-                                        <td th:text="${sales.getSalesDescription()}"></td>
-                                        <td th:text="${sales.getProducts()}"></td>
-                                        <td th:text="${sales.getTotalAmount()}"></td>
-                                        <td th:text="${sales.getSalesAgent().getName()}"></td>
-                                        <td th:text="${sales.getVehicleDescription()}"></td>
-                                        <td th:text="${sales.getStartKm()}"></td>
-                                        <td th:text="${sales.getEndKm()}"></td>
-                                    </tr>
-
-                                </th:block>
-
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-            <!-- END SALES SUMMARY -->
-
-            <!-- PURCHSAE SUMMARY -->
-        <div class="row mb-4">
-            <!-- SALES SUMMARY -->
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header border-bottom">
-                        <h6 class="m-0">Purchase Summary</h6>
-                    </div>
-                    <div class="card-body pt-0">
-
-
-                        <div  class="table-responsive invoice-table">
-
-                            <script>
-                                $(document).ready(function(){
-                                    $('#purchaseTable').DataTable();
-                                });
-                            </script>
-                            <table id="purchaseTable" class="table table-hover">
-                                <thead class="bg-light">
-                                <tr>
-                                    <th>Bill No</th>
-                                    <th>Date</th>
-                                    <th>Description</th>
-                                    <th>Products</th>
-                                    <th>purchase Amount</th>
-                                    <th>Vehicle</th>
-                                    <th>Start KM</th>
-                                    <th>End KM</th>
-
-
-
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <th:block th:each="purchase : ${dashboard.purchaseSummary()}">
-                                    <tr>
-                                        <th> <a th:href="@{'#'}" th:text="${purchase.getBillNo()}"></a></th>
-
-                                        <td th:text="${purchase.getDate()}"></td>
-                                        <td th:text="${purchase.getPurchaseDescription()}"></td>
-                                        <td th:text="${purchase.getProducts()}"></td>
-                                        <td th:text="${purchase.getTotalAmount()}"></td>
-                                        <td th:text="${purchase.getVehicleDescription()}"></td>
-                                        <td th:text="${purchase.getStartKm()}"></td>
-                                        <td th:text="${purchase.getEndKm()}"></td>
-                                    </tr>
-
-                                </th:block>
-
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-            <!-- END PURCHASE SUMMARY -->
 
         <div class="row">
             <!-- NET INCOME -->
@@ -526,22 +260,12 @@ console.log(data);
                         <h6 class="m-0">Net Income Graph</h6>
                     </div>
                     <div class="card-body pt-0">
-                        <div class="row border-bottom py-2 bg-light">
-                            <div class="col-12 col-sm-6">
-                                <div id="blog-overview-date-range" class="input-daterange input-group input-group-sm my-auto ml-auto mr-auto ml-sm-auto mr-sm-0" style="max-width: 350px;">
-                                    <input type="text" class="input-sm form-control" name="start" placeholder="Start Date" id="blog-overview-date-range-1">
-                                    <input type="text" class="input-sm form-control" name="end" placeholder="End Date" id="blog-overview-date-range-2">
-                                    <span class="input-group-append">
-                                    <span class="input-group-text">
-                                      <i class="material-icons"></i>
-                                    </span>
-                                                </span>
-                                </div>
-                                <div class="col-12 col-sm-6 d-flex mb-2 mb-sm-0">
-                                    <button type="button" class="btn btn-sm btn-white ml-auto mr-auto ml-sm-auto mr-sm-0 mt-3 mt-sm-0">View Full Report &rarr;</button>
-                                </div>
-                            </div>
-                            <canvas height="130" style="max-width: 100% !important;" class="blog-overview-users"></canvas>
+                        <div class="row border-bottom py-2 bg-light" style="padding:2%; ">
+
+                            <!--<canvas height="130" style="max-width: 100% !important;" class="blog-overview-users"></canvas>-->
+                            <canvas height="100" id="netIncome" ></canvas>
+                            <script th:src="@{/custom/js/graphs/net_income.js}"></script>
+
                         </div>
                     </div>
                 </div>
@@ -553,6 +277,8 @@ console.log(data);
 
             <!-- Row -->
         </div>
+
+
         <!-- Main Wrapper -->
         <div class="page-footer">
             <p>Made with by Lemon Technology</p>

@@ -75,9 +75,15 @@ public class IndexController {
 
     @GetMapping("/coa")
     public String coa(Model model){
+        FiscalAccount fiscalAccount =sessionService.getCurrentUserSession().getFiscalAccount();
        // model.addAttribute("accountTypeGroups",accountTypeGroupRepo.findAll());
         model.addAttribute("accountTypes",accountTypeRepo.findAll());
-        model.addAttribute("accounts",accountRepo.findByFiscalAccount(sessionService.getCurrentUserSession().getFiscalAccount()));
+        model.addAttribute("accounts",accountRepo.findByFiscalAccount(fiscalAccount));
+        model.addAttribute("assetAccounts", accountRepo.findByFiscalAccountAndAccountType_AccountTypeDescription(fiscalAccount,"asset"));
+        model.addAttribute("liabilityAccounts", accountRepo.findByFiscalAccountAndAccountType_AccountTypeDescription(fiscalAccount,"liability"));
+        model.addAttribute("equityAccounts", accountRepo.findByFiscalAccountAndAccountType_AccountTypeDescription(fiscalAccount,"equity"));
+        model.addAttribute("incomeAccounts", accountRepo.findByFiscalAccountAndAccountType_AccountTypeDescription(fiscalAccount,"income"));
+        model.addAttribute("expenseAccounts", accountRepo.findByFiscalAccountAndAccountType_AccountTypeDescription(fiscalAccount,"expense"));
 
         return "chartOfAccount";
     }
@@ -105,6 +111,19 @@ public class IndexController {
         model.addAttribute("cashSubAccounts",cashSubAccounts);
 
         return "sales_entry";
+    }
+
+    @RequestMapping("/sales/detail")
+    public String salesDetail(Model model){
+        model.addAttribute("sales",sessionService.getCurrentUserSession().getFiscalAccount().getSales());
+        return "sales_detail";
+    }
+
+
+    @RequestMapping("/purchase/detail")
+    public String purchaseDetail(Model model){
+        model.addAttribute("purchase",sessionService.getCurrentUserSession().getFiscalAccount().getPurchases());
+        return "purchase_detail";
     }
 
     @Autowired
@@ -220,15 +239,45 @@ public class IndexController {
     @RequestMapping("/manage/customer")
     public String customer(Model model){
         model.addAttribute("customers",customerRepo.getByFiscalAccount(sessionService.getCurrentUserSession().getFiscalAccount()));
-        model.addAttribute("");
         return "customer";
     }
+
+    @RequestMapping("/voucher/detail")
+    public String voucherDetail(Model model){
+        //model.addAttribute("customers",customerRepo.getByFiscalAccount(sessionService.getCurrentUserSession().getFiscalAccount()));
+        return "voucher_detail";
+    }
+
+
+    @RequestMapping("/inventory/detail")
+    public String inventoryDetail(Model model){
+        //model.addAttribute("customers",customerRepo.getByFiscalAccount(sessionService.getCurrentUserSession().getFiscalAccount()));
+        return "inventory_detail";
+    }
+//    @RequestMapping("/reports/ledger")
+//    public String ledger(Model model){
+//        model.addAttribute("accounts",acco    untRepo.findByFiscalAccount(sessionService.getCurrentUserSession().getFiscalAccount()));
+//        return "ledger";
+//    }
+
+    @RequestMapping("/reports/cashbook")
+    public String cashBook(Model model){
+        //model.addAttribute("customers",customerRepo.getByFiscalAccount(sessionService.getCurrentUserSession().getFiscalAccount()));
+        return "cash_book";
+    }
+
+
+
+
     @RequestMapping("/manage/vendor")
-    public String vendor(){
+    public String vendor(Model model) {
+        model.addAttribute("vendors", vendorRepo.getByFiscalAccount(sessionService.getCurrentUserSession().getFiscalAccount()));
         return "vendor";
     }
+
     @RequestMapping("/manage/transportation")
-    public String trasportation(){
+    public String trasportation(Model model){
+        model.addAttribute("vehicles",vehicleRepo.getByFiscalAccount(sessionService.getCurrentUserSession().getFiscalAccount()));
         return "transportation";
     }
     @RequestMapping("/manage/employee")
@@ -247,7 +296,8 @@ public class IndexController {
     }
 
     @RequestMapping("/manage/product")
-    public String product(){
+    public String product(Model model){
+        model.addAttribute("products",productRepo.getByFiscalAccount(sessionService.getCurrentUserSession().getFiscalAccount()));
         return "product";
     }
 

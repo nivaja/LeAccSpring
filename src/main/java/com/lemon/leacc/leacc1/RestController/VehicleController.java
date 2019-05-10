@@ -5,10 +5,8 @@ import com.lemon.leacc.leacc1.Model.Customer;
 import com.lemon.leacc.leacc1.Model.Vehicle;
 import com.lemon.leacc.leacc1.RestRepo.VehicleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -22,8 +20,18 @@ public class VehicleController {
     SessionService sessionService;
 
     @PostMapping("/add")
-    public void addCustomer(@Valid @RequestBody Vehicle vehicle){
+    public void add(@Valid @RequestBody Vehicle vehicle){
         vehicle.setFiscalAccount(sessionService.getCurrentUserSession().getFiscalAccount());
         vehicleRepo.save(vehicle);
     }
+
+    @GetMapping("/delete/{id}")
+    public String deleteUser(@PathVariable("id") int id, Model model) {
+        Vehicle vehicle = vehicleRepo.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        vehicleRepo.delete(vehicle);
+        model.addAttribute("vehicles", vehicleRepo.findAll());
+        return "transportation";
+    }
+
 }

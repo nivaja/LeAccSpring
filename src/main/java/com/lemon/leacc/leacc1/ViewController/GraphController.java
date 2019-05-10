@@ -93,4 +93,9 @@ d.put("lable",label);
     return d;
 
     }
+
+    @RequestMapping("/salesByCustomer")
+    public void salesByCustomer(){
+
+    }
 }

@@ -12,5 +12,9 @@ import java.util.List;
 public interface AccountRepo extends JpaRepository<Account,Integer> {
     List<Account> findByFiscalAccount(FiscalAccount fiscalAccount);
     List<Account> findByFiscalAccountAndAccountType_AccountTypeDescription(FiscalAccount fiscalAccount, String accountTypeDescription);
-    List<Account> findByAccountTypeAndAccountDescriptionNotAndFiscalAccount(AccountType accountType,String accountDesc, FiscalAccount fiscalAccount);
+
+
+    List<Account> findByFiscalAccountAndAccountTypeAccountTypeDescription(FiscalAccount fiscalAccount,String accountTypeDescription);
+
+    List<Account> findByAccountTypeAndAccountDescriptionNotAndFiscalAccount(AccountType accountType, String accountDesc, FiscalAccount fiscalAccount);
 }

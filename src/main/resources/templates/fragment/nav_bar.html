@@ -82,115 +82,72 @@
         <div class="page-sidebar-inner">
             <div class="page-sidebar-menu">
                 <ul class="accordion-menu">
-                    <li class="active-page">
+                    <div sec:authorize="hasRole('USER')">
+                    <li class="active-page" >
                         <a th:href="@{/dashboard}">
-                            <i class="menu-icon icon-home4"></i><span>Dashboard</span>
+                            <i class="fa fa-dashboard"></i><span>Dashboard </span>
                         </a>
                     </li>
+                    </div>
                     <li>
                         <a href="javascript:void(0)">
-                            <i class="menu-icon icon-flash_on"></i><span>Sales</span><i class="accordion-icon fa fa-angle-left"></i>
+                            <i class="fa fa-shopping-bag"></i><span>Sales</span><i class="accordion-icon fa fa-angle-left"></i>
                         </a>
                         <ul class="sub-menu">
                             <li><a th:href="@{/sales/invoice}">Invoice</a></li>
 
-                            <li><a href="maps-google.html">Customer Statement</a></li>
-                            <li><a href="ui-buttons.html">Detail Report</a></li>
+                            <li><a th:href="@{/manage/customer}">Customer Statement</a></li>
+                            <li><a th:href="@{/sales/detail}">Detail Report</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="javascript:void(0)">
-                            <i class="menu-icon icon-flash_on"></i><span>Purchase</span><i class="accordion-icon fa fa-angle-left"></i>
+                            <i class="fa fa-industry"></i><span>Purchase</span><i class="accordion-icon fa fa-angle-left"></i>
                         </a>
                         <ul class="sub-menu">
                             <li><a th:href="@{/purchase/bill}">Bill</a></li>
-                            <li><a href="maps-google.html">Vendor Statement</a></li>
-                            <li><a href="ui-buttons.html">Detail Report</a></li>
+                            <li><a  th:href="@{/manage/vendor}">Vendor Statement</a></li>
+                            <li><a th:href="@{/purchase/detail}">Detail Report</a></li>
                         </ul>
                     </li>
 
                     <li>
                         <a href="javascript:void(0)">
-                            <i class="menu-icon icon-flash_on"></i><span>Voucher</span><i class="accordion-icon fa fa-angle-left"></i>
+                            <i class="fa fa-dollar"></i><span>Voucher</span><i class="accordion-icon fa fa-angle-left"></i>
                         </a>
                         <ul class="sub-menu">
                             <li><a th:href="@{/voucher/payment}">Payment</a></li>
                             <li><a th:href="@{/voucher/reciept}">Reciept</a></li>
-                            <li><a href="ui-buttons.html">Detail Report</a></li>
+                            <li><a th:href="@{/voucher/detail}">Detail Report</a></li>
                         </ul>
                     </li>
 
-                    <li>
-                        <a href="javascript:void(0)">
-                            <i class="menu-icon icon-flash_on"></i><span>Journal</span><i class="accordion-icon fa fa-angle-left"></i>
-                        </a>
-                        <ul class="sub-menu">
-                            <li><a th:href="@{/journal/entry}">Entry</a></li>
-                            <li><a th:href="@{/journal/details}">Details</a></li>
-                        </ul>
-                    </li>
+
+
+
 
                     <li>
                         <a href="javascript:void(0)">
-                            <i class="menu-icon icon-flash_on"></i><span>Transport</span><i class="accordion-icon fa fa-angle-left"></i>
+                            <i class="fa fa-area-chart"></i><span>Reports</span><i class="accordion-icon fa fa-angle-left"></i>
                         </a>
                         <ul class="sub-menu">
-                            <li><a th:href="@{/vehicle/fuel}">Fuel Entry</a></li>
-                            <li><a th:href="@{/vehicle/maintenance}">maintenance Entry</a></li>
-                            <li><a th:href="@{/vehicle/part}">Part Entry</a></li>
-                            <li><a th:href="@{/vehicle/detail}">Detail Report</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            <i class="menu-icon icon-code"></i><span>Inventory Stock</span><i class="accordion-icon fa fa-angle-left"></i>
-                        </a>
-                        <ul class="sub-menu">
-                            <li><a th:href="@{/inventory/transfer}">Inventory Transfer</a></li>
-                            <li><a href="form-wizard.html">Detail Report</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            <i class="menu-icon icon-format_list_bulleted"></i><span>Production</span><i class="accordion-icon fa fa-angle-left"></i>
-                        </a>
-                        <ul class="sub-menu">
-                            <li><a th:href="@{/production/finished_good_entry}">Finished Good Entry</a></li>
-                            <li><a href="table-responsive.html">Detail Report</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a href="javascript:void(0)">
-                            <i class="menu-icon icon-my_location"></i><span>Reports</span><i class="accordion-icon fa fa-angle-left"></i>
-                        </a>
-                        <ul class="sub-menu">
-                            <li><a href="maps-google.html">Balance Sheet</a></li>
-                            <li><a th:href="@{/report/profitAndLoss}">Profit and Loss</a></li>
-                            <li><a href="maps-vector.html">Cash Flow</a></li>
-                            <li><a href="maps-vector.html">Trail Balance</a></li>
-                            <li><a href="maps-vector.html">Legder</a></li>
+                            <li><a th:href="@{/reports/ledger}">Legder</a></li>
                             <li><a th:href="@{/reports/stockLedger}">Stock Ledger</a></li>
-                            <li><a href="maps-vector.html">Cash Book</a></li>
+                            <li><a th:href="@{/reports/cashbook}">Cash Book</a></li>
                         </ul>
                     </li>
 
-                    <li>
-                        <a href="charts.html">
-                            <i class="menu-icon icon-show_chart"></i><span>HR</span>
-                        </a>
-                    </li>
 
                     <li>
                         <a th:href="@{/coa}">
-                            <i class="menu-icon icon-star"></i><span>Chart of Account</span>
+                            <i class="fa fa-columns"></i><span>Chart of Account</span>
                         </a>
 
                     </li>
                     <li class="menu-divider"></li>
                     <li>
                         <a href="javascript:void(0)">
-                            <i class="menu-icon icon-help_outline"></i><span>Settings</span><i class="accordion-icon fa fa-angle-left"></i>
+                            <i class="fa fa-university"></i><span>Settings</span><i class="accordion-icon fa fa-angle-left"></i>
                         </a>
                         <ul class="sub-menu">
                             <li><a th:href="@{/setting/company_date_setting}">Company</a></li>
@@ -199,24 +156,21 @@
 
                     <li>
                         <a href="javascript:void(0)">
-                            <i class="menu-icon icon-my_location"></i><span>Manage</span><i class="accordion-icon fa fa-angle-left"></i>
+                            <i class="fa fa-cog"></i><span>Manage</span><i class="accordion-icon fa fa-angle-left"></i>
                         </a>
                         <ul class="sub-menu">
                             <li><a th:href="@{/manage/user}">User</a></li>
                             <li><a th:href="@{/manage/customer}">Customer</a></li>
                             <li><a th:href="@{/manage/vendor}">Vendor</a></li>
-                            <li><a th:href="@{/manage/employee}">Employee</a></li>
                             <li><a th:href="@{/manage/sales_agent}">Sales Agent</a></li>
                             <li><a th:href="@{/manage/transportation}">Transportation</a></li>
-                            <li><a th:href="@{/manage/godown}">Godown</a></li>
                             <li><a th:href="@{/manage/product}">Product</a></li>
-                            <li><a th:href="@{/manage/finished_product_map}">Finished Product Map</a></li>
                         </ul>
                     </li>
 
                     <li>
-                        <a href="javascript:void(0)">
-                            <i class="menu-icon icon-public"></i><span>Log Out</span><span class="label label-danger">1.0</span>
+                        <a th:href="@{/logout}">
+                            <i class="fa fa-sign-out"></i><span>Log Out</span>
                         </a>
                     </li>
                 </ul>

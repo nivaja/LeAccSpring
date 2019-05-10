@@ -2,6 +2,7 @@ package com.lemon.leacc.leacc1.Model;
 
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -26,13 +27,13 @@ public class Sales implements Serializable {
     private Date Date;
     private String salesDescription;
 
-
     @ManyToOne
     @JsonBackReference(value = "salesAgent")
     @JoinColumn(name = "sales_agent_id")
     private SalesAgent salesAgent;
 
-    @ManyToOne
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JsonBackReference(value = "vehicle")
     @JoinColumn(name = "vehicle_id")
     private Vehicle vehicle;

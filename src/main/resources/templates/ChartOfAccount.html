@@ -90,7 +90,7 @@
 
                                         <div style="margin-top: 1.5rem;" >
                                             <div class="container">
-                                                <th:block th:each="account : ${accounts}">
+                                                <th:block th:each="account : ${assetAccounts}">
                                                     <div class="header" th:text="${account.getAccountDescription()}"></div>
                                                     <th:block th:each="sub_account : ${account.getSubAccounts()}">
 
@@ -101,18 +101,51 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div role="tabpanel" class="tab-pane fade" id="tab22">
-                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-                                    </div>
+                                        <div class="container">
+                                            <th:block th:each="account : ${liabilityAccounts}">
+                                                <div class="header" th:text="${account.getAccountDescription()}"></div>
+                                                <th:block th:each="sub_account : ${account.getSubAccounts()}">
+
+                                                    <div class="body" th:text="${sub_account.getSubAccountDescription()}"></div>
+                                                </th:block>
+                                                <div class="footer"> <button class="btn btn-link btn-lg" data-toggle="modal" data-target="#SubAccountModal"><strong>Add Sub Account</strong></button></div>
+                                            </th:block>
+                                        </div>                                    </div>
                                     <div role="tabpanel" class="tab-pane fade" id="tab23">
-                                        <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.</p>
-                                    </div>
+                                        <div class="container">
+                                            <th:block th:each="account : ${equityAccounts}">
+                                                <div class="header" th:text="${account.getAccountDescription()}"></div>
+                                                <th:block th:each="sub_account : ${account.getSubAccounts()}">
+
+                                                    <div class="body" th:text="${sub_account.getSubAccountDescription()}"></div>
+                                                </th:block>
+                                                <div class="footer"> <button class="btn btn-link btn-lg" data-toggle="modal" data-target="#SubAccountModal"><strong>Add Sub Account</strong></button></div>
+                                            </th:block>
+                                        </div>                                    </div>
                                     <div role="tabpanel" class="tab-pane fade" id="tab24">
-                                        <p>Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus.</p>
-                                    </div>
+                                        <div class="container">
+                                            <th:block th:each="account : ${incomeAccounts}">
+                                                <div class="header" th:text="${account.getAccountDescription()}"></div>
+                                                <th:block th:each="sub_account : ${account.getSubAccounts()}">
+
+                                                    <div class="body" th:text="${sub_account.getSubAccountDescription()}"></div>
+                                                </th:block>
+                                                <div class="footer"> <button class="btn btn-link btn-lg" data-toggle="modal" data-target="#SubAccountModal"><strong>Add Sub Account</strong></button></div>
+                                            </th:block>
+                                        </div>                                    </div>
                                     <div role="tabpanel" class="tab-pane fade" id="tab25">
-                                        <p>Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus.</p>
-                                    </div>
+                                        <div class="container">
+                                            <th:block th:each="account : ${expenseAccounts}">
+                                                <div class="header" th:text="${account.getAccountDescription()}"></div>
+                                                <th:block th:each="sub_account : ${account.getSubAccounts()}">
+
+                                                    <div class="body" th:text="${sub_account.getSubAccountDescription()}"></div>
+                                                </th:block>
+                                                <div class="footer"> <button class="btn btn-link btn-lg" data-toggle="modal" data-target="#SubAccountModal"><strong>Add Sub Account</strong></button></div>
+                                            </th:block>
+                                        </div>                                    </div>
                                 </div>
                             </div>
 
