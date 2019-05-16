@@ -288,14 +288,9 @@ VoucherPaymentRepo voucherPaymentRepo;
         return "finished_product_map";
     }
 
-    @Autowired
-    StockLedger stockLedger;
-    @RequestMapping("/reports/stockLedger/{id}")
-    public String stockLedger(Model model, @PathVariable int id){
-        model.addAttribute("stockItems",stockLedger.generateStockLedgerByProduct(productRepo.getOne(id)));
 
-        return "stock_ledger";
-    }
+
+
 
 
     @RequestMapping("/logout")
