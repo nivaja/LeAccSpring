@@ -5,10 +5,14 @@ import com.lemon.leacc.leacc1.Model.Product;
 import com.lemon.leacc.leacc1.Model.PurchaseProduct;
 import com.lemon.leacc.leacc1.Model.SalesProduct;
 import com.lemon.leacc.leacc1.RestRepo.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Component
@@ -46,7 +50,26 @@ public class StockLedger {
             stockLegderModel.setParticular("FROM Sales" +" BILL NO:[" +item.getSales().getBillNo()+"] \n"+ item.getSales().getSalesDescription());
             stockLegderModels.add(stockLegderModel);
         });
-       stockLegderModels.sort((model1, model2) -> model1.getDate().compareTo(model2.getDate()));
+       stockLegderModels.sort(Comparator.comparing(StockLegderModel::getDate));
+        for (int i = 0; i < stockLegderModels.size(); i++) {
+            try {
+                var slmThis = stockLegderModels.get(i);
+                var slmPrev = (i>=1)? stockLegderModels.get(i-1):null;
+
+                if (slmThis.getReceivedQuantity()==0){
+                    slmThis.setBalance((i==0)? slmThis.getReceivedQuantity()-slmThis.getIssuedQuantity():slmPrev.getBalance()-slmThis.getIssuedQuantity());
+
+                }else if (slmThis.getIssuedQuantity()==0){
+                    slmThis.setBalance((i == 0) ? slmThis.getReceivedQuantity() : slmPrev.getBalance() + slmThis.getReceivedQuantity());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+        stockLegderModels.forEach(x->{
+            System.out.println(x.getBalance());
+        });
         return stockLegderModels;
     }
 }

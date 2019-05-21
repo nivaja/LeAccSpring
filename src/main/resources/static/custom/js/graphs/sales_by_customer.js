@@ -59,32 +59,42 @@ var barOptions_stacked = {
         }
     },
     pointLabelFontFamily : "Quadon Extra Bold",
-    scaleFontFamily : "Quadon Extra Bold",
+    scaleFontFamily : "Quadon Extra Bold"
 };
 
-    var ctx = document.getElementById('salesByCustomer').getContext('2d');
-    var sbcGraphs = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ["Ram", "Shyam", "Hari", "Laxman"],
 
-            datasets: [{
-                label: 'Aaku',
-                data: [727, 589, 537, 543, 574],
-                backgroundColor: '#42a5f5',
-                hoverBackgroundColor: "#2196f3"
-            },{
-                label: 'Aqua 67',
-                data: [238, 553, 746, 884, 903],
-                backgroundColor: "#1e88e5",
-                hoverBackgroundColor: "#1976d2"
-            },{
-                label: 'Rious',
-                data: [1238, 553, 746, 884, 903],
-                backgroundColor: "#1565c0",
-                hoverBackgroundColor: "#0d47a1"
-            }]
-        },
+
+
+
+
+
+
+
+var barChartData = {
+    labels: ["Ram", "Shyam", "Hari", "Laxman"],
+
+    datasets: [{
+        label: 'Aaku',
+        data: [727, 589, 537, 543, 574],
+        backgroundColor: '#42a5f5',
+        hoverBackgroundColor: "#2196f3"
+    },{
+        label: 'Aqua 67',
+        data: [238, 553, 746, 884, 903],
+        backgroundColor: "#1e88e5",
+        hoverBackgroundColor: "#1976d2"
+    },{
+        label: 'Rious',
+        data: [1238, 553, 746, 884, 903],
+        backgroundColor: "#1565c0",
+        hoverBackgroundColor: "#0d47a1"
+    }]
+};
+window.onload = function() {
+    var salesByCustomerGraph = document.getElementById('salesByCustomer').getContext('2d');
+    window.myBar = new Chart(salesByCustomerGraph, {
+        type: 'bar',
+        data: barChartData,
         options: {
             title: {
                 display: true,
@@ -97,7 +107,7 @@ var barOptions_stacked = {
             responsive: true,
             scales: {
                 xAxes: [{
-                    stacked: true
+                    stacked: true,
                 }],
                 yAxes: [{
                     stacked: true
@@ -105,4 +115,13 @@ var barOptions_stacked = {
             }
         }
     });
+};
 
+// document.getElementById('randomizeData').addEventListener('click', function() {
+//     barChartData.datasets.forEach(function(dataset) {
+//         dataset.data = dataset.data.map(function() {
+//             return randomScalingFactor();
+//         });
+//     });
+//     window.myBar.update();
+// });

@@ -28,7 +28,7 @@ var chartData = {
     }]
 
 };
-window.onload = function() {
+// window.onload = function() {
     var ctx = document.getElementById('netIncome').getContext('2d');
     window.myMixedChart = new Chart(ctx, {
         type: 'bar',
@@ -45,6 +45,6 @@ window.onload = function() {
             }
         }
     });
-};
+//};
 
 

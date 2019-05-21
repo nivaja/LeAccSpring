@@ -3,17 +3,15 @@ package com.lemon.leacc.leacc1.BussinessLogic;
 import com.lemon.leacc.leacc1.Model.Account;
 import com.lemon.leacc.leacc1.Model.PaymentAccount;
 import com.lemon.leacc.leacc1.Model.RecieptAccount;
-import com.lemon.leacc.leacc1.RestRepo.AccountRepo;
 import com.lemon.leacc.leacc1.RestRepo.VoucherPaymentAccountRepo;
 import com.lemon.leacc.leacc1.RestRepo.VoucherRecieptAccountRepo;
 import com.lemon.leacc.leacc1.viewModel.LedgerModel;
-import org.aspectj.weaver.ast.Var;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+@Component
 public class GeneralLedger {
 
     public GeneralLedger(){}
@@ -45,5 +43,7 @@ public class GeneralLedger {
         ledgerModels.sort((model1, model2) -> model1.getDate().compareTo(model2.getDate()));
         return ledgerModels;
     }
+
+
 
 }

@@ -1,20 +1,23 @@
 package com.lemon.leacc.leacc1.ViewController;
 
 import com.lemon.leacc.leacc1.Auth.SessionService;
-import com.lemon.leacc.leacc1.Model.Account;
-import com.lemon.leacc.leacc1.Model.Payment;
-import com.lemon.leacc.leacc1.Model.PaymentAccount;
-import com.lemon.leacc.leacc1.RestRepo.PaymentAccountRepo;
-import org.hibernate.SessionFactory;
+
+import com.lemon.leacc.leacc1.Model.Customer;
+import com.lemon.leacc.leacc1.Model.FiscalAccount;
+import com.lemon.leacc.leacc1.Model.Product;
+import com.lemon.leacc.leacc1.Model.SalesProduct;
+import com.lemon.leacc.leacc1.RestRepo.CustomerRepo;
+import com.lemon.leacc.leacc1.RestRepo.ProductRepo;
+import com.lemon.leacc.leacc1.RestRepo.SalesProductRepo;
+import com.lemon.leacc.leacc1.RestRepo.SalesRepo;
+import com.lemon.leacc.leacc1.viewModel.SalesByCustomerModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.EntityManager;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javax.persistence.Query;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/graph")
@@ -94,8 +97,65 @@ d.put("lable",label);
 
     }
 
+    @Autowired
+    CustomerRepo customerRepo;
+    @Autowired
+    SalesRepo salesRepo;
+    @Autowired
+    SalesProductRepo salesProductRepo;
+    @Autowired
+    ProductRepo productRepo;
     @RequestMapping("/salesByCustomer")
-    public void salesByCustomer(){
+    public  Map<String,List<Object>> salesByCustomer(){
+        FiscalAccount fiscalAccount =sessionService.getCurrentUserSession().getFiscalAccount();
+        Map<String,List<Object>> data=new HashMap<>();
+        List<SalesByCustomerModel> sbcList = new ArrayList<>();
+        List<Object> customers = new ArrayList<>();
+        List<Object> products =new ArrayList<>();
+                customerRepo.getByFiscalAccount(fiscalAccount).forEach(x->customers.add(x.getName()));
+        List<Object> amounts = new ArrayList<>();
 
+//        customerRepo.getByFiscalAccount(fiscalAccount).forEach(cus->{
+//            customers.add(cus.getName());
+//            productRepo.getByFiscalAccount(fiscalAccount).forEach(product -> {
+//                final double[] amount = {0};
+//                salesProductRepo.findBySales_Customer(cus).stream().
+//                        filter(salesProduct -> salesProduct.getProduct()== product).forEach(x->{
+//                            amount[0] += x.getAmount();
+//                });
+//                amounts.add(amount[0]);
+//                SalesByCustomerModel sbcModel= new SalesByCustomerModel(cus,product, amount[0]);
+//
+//                sbcList.add(sbcModel);
+//                });
+//
+//            });
+
+
+        productRepo.getByFiscalAccount(fiscalAccount).forEach(product->{
+            products.add(product.getProductDescription());
+            customerRepo.getByFiscalAccount(fiscalAccount).forEach(customer -> {
+                final double[] amount = {0};
+                salesProductRepo.findByProduct(product).stream().
+                        filter(salesProduct -> salesProduct.getSales().getCustomer()== customer).forEach(x->{
+                    amount[0] += x.getAmount();
+                });
+                amounts.add(amount[0]);
+                SalesByCustomerModel sbcModel= new SalesByCustomerModel(customer,product, amount[0]);
+
+                sbcList.add(sbcModel);
+            });
+
+        });
+
+data.put("customers",customers);
+data.put("products",(List<Object>) products);
+data.put("amounts",amounts);
+
+        sbcList.forEach(x->{
+            System.out.println(x.getCustomer().getName()+", "+x.getProduct().getProductDescription()+", "+x.getAmount());
+        });
+return data;
     }
 }
+

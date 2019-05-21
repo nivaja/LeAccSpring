@@ -11,18 +11,15 @@
     <meta name="author" content="stacks">
     <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <link rel="stylesheet" th:href="@{/bootstrap4/css/bootstrap.css}">
-    <!--<script th:src="@{/shard_static/scripts/shards-dashboards.1.1.0.min.js}"></script>-->
 
     <style type="text/css">
-        .form-row{
-            margin: 1.5%;
+        th{
+            color: black;
+            margin-left: 10%;
         }
-
     </style>
-
-
     <!-- Title -->
-    <title>Cash Ledger</title>
+    <title>CashBook</title>
 
     <!-- Styles -->
 </head>
@@ -30,44 +27,45 @@
 <body>
 
 <div layout:fragment="content">
-    <div class="table-responsive invoice-table">
-        <table class="table table-hover">
-            <thead class="bg-light">
-            <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Particular</th>
-                <th scope="col">Payment</th>
-                <th scope="col">Reciept</th>
-            </tr>
-            </thead>
-            <tbody>
-            <div th:if="${!(ledgers == null)}">
-                <th:block th:each="ledger : ${ledgers}">
-                    <tr>
-                        <th scope="row" th:text="${ledger.getDate()}"></th>
-                        <td th:text="${ledger.getParticular()}"></td>
-                        <td th:text="${ledger.getPayment()}"></td>
-                        <td th:text="${ledger.getReciept()}"></td>
+    <div class="row">
+        <div class="col pull-left">
+            <h3>Cash Book</h3>
+        </div>
 
-                    </tr>
-
-                </th:block>
-            </div>
-
-            </tbody>
-        </table>
     </div>
+    <div id="main-wrapper">
+        <!--TABLE START-->
+        <div class="table-responsive invoice-table">
+            <table class="table table-hover">
+                <thead class="bg-light">
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Particular</th>
+                    <th scope="col">Payment</th>
+                    <th scope="col">Reciept</th>
+                    <th scope="col">Balance</th>
+                </tr>
+                </thead>
+                <tbody>
+                <div th:if="${!(ledgers == null)}">
+                    <th:block th:each="ledger : ${ledgers}">
+                        <tr>
+                            <th scope="row" th:text="${ledger.getDate()}"></th>
+                            <td th:text="${ledger.getParticular()}"></td>
+                            <td th:text="${ledger.getPayment()}"></td>
+                            <td th:text="${ledger.getReciept()}"></td>
 
+                        </tr>
 
-    <script th:src="@{/space_static/plugins/jquery/jquery-3.1.0.min.js}"></script>
-    <script type="text/javascript" th:src="@{/custom/js/stock_legder.js}"></script>
+                    </th:block>
+                </div>
 
-    <!-- End Users By Expense break down -->
+                </tbody>
+            </table>
+        </div>
 
-
+    </div>
 </div>
-
-
 
 
 </body>

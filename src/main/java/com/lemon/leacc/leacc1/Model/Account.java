@@ -3,10 +3,12 @@ package com.lemon.leacc.leacc1.Model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jdk.nashorn.internal.objects.annotations.Getter;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+
 
 @Entity
 public class Account implements Serializable{
