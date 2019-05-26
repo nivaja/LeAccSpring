@@ -6,10 +6,12 @@ import com.lemon.leacc.leacc1.Model.PaymentAccount;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
 public interface PaymentAccountRepo extends JpaRepository<PaymentAccount,Integer>{
     List<PaymentAccount> findByAccount(Account account);
     List<PaymentAccount> findByAccount_FiscalAccount(FiscalAccount fiscalAccount);
+    List<PaymentAccount> findByPayment_DateAndPayment_FiscalAccount(Date date,FiscalAccount fiscalAccount);
 }

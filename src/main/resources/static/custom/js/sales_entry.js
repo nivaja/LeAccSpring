@@ -8,15 +8,14 @@ $("#salesForm").submit(function (e) {
         url: URL,
         contentType: 'application/json',
         data: data,
-        success: Swal.fire(
-            'The Internet?',
-            'That thing is still around?',
-            'success'
-        ),
+        success: success($("#salesForm")),
+
         dataType: "json"
     });
 
 });
+
+
 
 
 $("input[name='date']").click(function () {

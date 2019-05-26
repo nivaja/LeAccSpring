@@ -31,3 +31,31 @@ $(document).on('click','.addRow',function (e) {
 $(document).on('click','.removeRow',function () {
     $(this).closest('tr').remove();
 });
+
+function success(form){
+    Swal.fire(
+        'Record Saved',
+
+        'success'
+    );
+    form.get(0).reset();
+    clear_form_elements(form);
+}
+function clear_form_elements(ele) {
+
+    $(ele).find(':input').each(function() {
+        switch(this.type) {
+            case 'password':
+            case 'select-multiple':
+            case 'select-one':
+            case 'text':
+            case 'textarea':
+                $(this).val('');
+                break;
+            case 'checkbox':
+            case 'radio':
+                this.checked = false;
+        }
+    });
+
+}

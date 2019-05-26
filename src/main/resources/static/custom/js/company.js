@@ -19,7 +19,7 @@ $("#companyForm").submit(function (e) {
         url: URL,
         contentType: 'application/json',
         data: JSON.stringify(companyInfo()),
-        success: alert("success"),
+        success: success($("#companyForm")),
         dataType: "json"
     });
 

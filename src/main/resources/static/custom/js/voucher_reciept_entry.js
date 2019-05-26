@@ -8,7 +8,7 @@ $("#voucherRecieptForm").submit(function (e) {
         url: URL,
         contentType: 'application/json',
         data: data,
-        success: alert("done"),
+        success: success($("#voucherRecieptForm")),
         dataType: "json"
     });
 

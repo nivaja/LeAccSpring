@@ -1,4 +1,6 @@
-var barOptions_stacked = {
+$.getJSON("http://localhost:8000/api/graph/salesByCustomer", function(json) {
+console.log(json);
+    var barOptions_stacked = {
     tooltips: {
         enabled: false
     },
@@ -69,27 +71,36 @@ var barOptions_stacked = {
 
 
 
+console.log(json.customers);
 
-var barChartData = {
-    labels: ["Ram", "Shyam", "Hari", "Laxman"],
+    var barChartData = {
+        labels: json.customers,
 
-    datasets: [{
-        label: 'Aaku',
-        data: [727, 589, 537, 543, 574],
-        backgroundColor: '#42a5f5',
-        hoverBackgroundColor: "#2196f3"
-    },{
-        label: 'Aqua 67',
-        data: [238, 553, 746, 884, 903],
-        backgroundColor: "#1e88e5",
-        hoverBackgroundColor: "#1976d2"
-    },{
-        label: 'Rious',
-        data: [1238, 553, 746, 884, 903],
-        backgroundColor: "#1565c0",
-        hoverBackgroundColor: "#0d47a1"
-    }]
-};
+        datasets: [{
+            label: json.products[0],
+            data: json.values[0],
+            backgroundColor: '#42a5f5',
+            hoverBackgroundColor: "#2196f3"
+        }, {
+            label: json.products[1],
+            data: json.values[1],
+            backgroundColor: "#1e88e5",
+            hoverBackgroundColor: "#1976d2"
+        }, {
+            label: json.products[2],
+            data: json.values[2],
+            backgroundColor: "#1565c0",
+            hoverBackgroundColor: "#0d47a1"
+        }, {
+            label: json.products[3],
+            data: json.values[3],
+            backgroundColor: "#1565c0",
+            hoverBackgroundColor: "#0d47a1"
+        }
+
+        ]
+    };
+
 window.onload = function() {
     var salesByCustomerGraph = document.getElementById('salesByCustomer').getContext('2d');
     window.myBar = new Chart(salesByCustomerGraph, {
@@ -116,7 +127,7 @@ window.onload = function() {
         }
     });
 };
-
+});
 // document.getElementById('randomizeData').addEventListener('click', function() {
 //     barChartData.datasets.forEach(function(dataset) {
 //         dataset.data = dataset.data.map(function() {

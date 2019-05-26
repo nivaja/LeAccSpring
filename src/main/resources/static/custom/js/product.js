@@ -2,14 +2,13 @@ $(function(){
     $("#productForm").submit(function (e) {
         e.preventDefault();
         var data = JSON.stringify(objectifyForm($("#productForm").serializeArray()));
-        alert(data);
         var URL = "http://localhost:8000/api/product/add"
         $.ajax({
             type: "POST",
             url: URL,
             contentType: 'application/json',
             data: data,
-            success: alert("done"),
+            success: success($("#productForm")),
             dataType: "json"
         });
         clear();
