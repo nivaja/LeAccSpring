@@ -8,7 +8,11 @@ $("#salesForm").submit(function (e) {
         url: URL,
         contentType: 'application/json',
         data: data,
-        success: alert("done"),
+        success: Swal.fire(
+            'The Internet?',
+            'That thing is still around?',
+            'success'
+        ),
         dataType: "json"
     });
 
@@ -59,3 +63,4 @@ function salesProducts() {
 
     return rows;
 }
+

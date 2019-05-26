@@ -2,6 +2,8 @@ package com.lemon.leacc.leacc1.ViewController;
 
 import com.lemon.leacc.leacc1.Auth.SessionService;
 
+import com.lemon.leacc.leacc1.BussinessLogic.MonthlySales;
+import com.lemon.leacc.leacc1.BussinessLogic.SalesByCustomer;
 import com.lemon.leacc.leacc1.BussinessLogic.StockSummary;
 import com.lemon.leacc.leacc1.Model.Customer;
 import com.lemon.leacc.leacc1.Model.FiscalAccount;
@@ -98,66 +100,66 @@ d.put("lable",label);
 
     }
 
-    @Autowired
-    CustomerRepo customerRepo;
-    @Autowired
-    SalesRepo salesRepo;
-    @Autowired
-    SalesProductRepo salesProductRepo;
-    @Autowired
-    ProductRepo productRepo;
-    @RequestMapping("/salesByCustomer")
-    public  Map<String,List<Object>> salesByCustomer(){
-        FiscalAccount fiscalAccount =sessionService.getCurrentUserSession().getFiscalAccount();
-        Map<String,List<Object>> data=new HashMap<>();
-        List<SalesByCustomerModel> sbcList = new ArrayList<>();
-        List<Object> customers = new ArrayList<>();
-        List<Object> products =new ArrayList<>();
-                customerRepo.getByFiscalAccount(fiscalAccount).forEach(x->customers.add(x.getName()));
-        List<Object> amounts = new ArrayList<>();
-
-//        customerRepo.getByFiscalAccount(fiscalAccount).forEach(cus->{
-//            customers.add(cus.getName());
-//            productRepo.getByFiscalAccount(fiscalAccount).forEach(product -> {
+//    @Autowired
+//    CustomerRepo customerRepo;
+//    @Autowired
+//    SalesRepo salesRepo;
+//    @Autowired
+//    SalesProductRepo salesProductRepo;
+//    @Autowired
+//    ProductRepo productRepo;
+//    @RequestMapping("/salesByCustomer")
+//    public  Map<String,List<Object>> salesByCustomer(){
+//        FiscalAccount fiscalAccount =sessionService.getCurrentUserSession().getFiscalAccount();
+//        Map<String,List<Object>> data=new HashMap<>();
+//        List<SalesByCustomerModel> sbcList = new ArrayList<>();
+//        List<Object> customers = new ArrayList<>();
+//        List<Object> products =new ArrayList<>();
+//                customerRepo.getByFiscalAccount(fiscalAccount).forEach(x->customers.add(x.getName()));
+//        List<Object> amounts = new ArrayList<>();
+//
+////        customerRepo.getByFiscalAccount(fiscalAccount).forEach(cus->{
+////            customers.add(cus.getName());
+////            productRepo.getByFiscalAccount(fiscalAccount).forEach(product -> {
+////                final double[] amount = {0};
+////                salesProductRepo.findBySales_Customer(cus).stream().
+////                        filter(salesProduct -> salesProduct.getProduct()== product).forEach(x->{
+////                            amount[0] += x.getAmount();
+////                });
+////                amounts.add(amount[0]);
+////                SalesByCustomerModel sbcModel= new SalesByCustomerModel(cus,product, amount[0]);
+////
+////                sbcList.add(sbcModel);
+////                });
+////
+////            });
+//
+//
+//        productRepo.getByFiscalAccount(fiscalAccount).forEach(product->{
+//            products.add(product.getProductDescription());
+//            customerRepo.getByFiscalAccount(fiscalAccount).forEach(customer -> {
 //                final double[] amount = {0};
-//                salesProductRepo.findBySales_Customer(cus).stream().
-//                        filter(salesProduct -> salesProduct.getProduct()== product).forEach(x->{
-//                            amount[0] += x.getAmount();
+//                salesProductRepo.findByProduct(product).stream().
+//                        filter(salesProduct -> salesProduct.getSales().getCustomer()== customer).forEach(x->{
+//                    amount[0] += x.getAmount();
 //                });
 //                amounts.add(amount[0]);
-//                SalesByCustomerModel sbcModel= new SalesByCustomerModel(cus,product, amount[0]);
+//                SalesByCustomerModel sbcModel= new SalesByCustomerModel(customer,product, amount[0]);
 //
 //                sbcList.add(sbcModel);
-//                });
-//
 //            });
-
-
-        productRepo.getByFiscalAccount(fiscalAccount).forEach(product->{
-            products.add(product.getProductDescription());
-            customerRepo.getByFiscalAccount(fiscalAccount).forEach(customer -> {
-                final double[] amount = {0};
-                salesProductRepo.findByProduct(product).stream().
-                        filter(salesProduct -> salesProduct.getSales().getCustomer()== customer).forEach(x->{
-                    amount[0] += x.getAmount();
-                });
-                amounts.add(amount[0]);
-                SalesByCustomerModel sbcModel= new SalesByCustomerModel(customer,product, amount[0]);
-
-                sbcList.add(sbcModel);
-            });
-
-        });
-
-data.put("customers",customers);
-data.put("products",(List<Object>) products);
-data.put("amounts",amounts);
-
-        sbcList.forEach(x->{
-            System.out.println(x.getCustomer().getName()+", "+x.getProduct().getProductDescription()+", "+x.getAmount());
-        });
-return data;
-    }
+//
+//        });
+//
+//data.put("customers",customers);
+//data.put("products",(List<Object>) products);
+//data.put("amounts",amounts);
+//
+//        sbcList.forEach(x->{
+//            System.out.println(x.getCustomer().getName()+", "+x.getProduct().getProductDescription()+", "+x.getAmount());
+//        });
+//return data;
+//    }
 
     @Autowired
     StockSummary stockSummary;
@@ -165,5 +167,20 @@ return data;
     public  Map<String,List<Object>> getStockSummary(){
         return stockSummary.getStockSummary();
     }
+
+    @Autowired
+    MonthlySales monthlySales;
+    @RequestMapping("/monthlySales")
+    public Map<String,Object> getMonthlySales(){
+        return monthlySales.getMonthlySales();
+    }
+
+    @Autowired
+    SalesByCustomer salesByCustomer;
+    @RequestMapping("/salesByCustomer")
+    public void getSalesBy(){
+         salesByCustomer.getSalesByCustomer();
+    }
+
 }
 

@@ -115,26 +115,35 @@
     // Blog Overview Users
     //
 
+      var lables = null;
+      var values =null;
+      $.getJSON("http://localhost:8000/api/graph/monthlySales", function(data) {
+        lables=data.lables;
+        values=data.values;
+      });
     var bouCtx = document.getElementsByClassName('blog-overview-users')[0];
 
     // Data
-    var bouData = {
+
+
+          var bouData = {
+
       // Generate the days labels on the X axis.
-      labels:  [ "January", "February", "March", "April", "May", "June",
-          "July", "August", "September", "October", "November", "December" ],
-      datasets: [{
-        label: 'Sales',
-        fill: 'start',
-        data: [500, 800, 320, 180, 240, 320, 230, 650, 590, 1200, 750, 940],
-        backgroundColor: 'rgba(0,123,255,0.1)',
-        borderColor: 'rgba(0,123,255,1)',
-        pointBackgroundColor: '#ffffff',
-        pointHoverBackgroundColor: 'rgb(0,123,255)',
-        borderWidth: 1.5,
-        pointRadius: 0,
-        pointHoverRadius: 3
-      }]
-    };
+          labels: lables ,
+          datasets: [{
+            label: 'Sales',
+            fill: 'start',
+            data: values,
+            backgroundColor: 'rgba(0,123,255,0.1)',
+            borderColor: 'rgba(0,123,255,1)',
+            pointBackgroundColor: '#ffffff',
+            pointHoverBackgroundColor: 'rgb(0,123,255)',
+            borderWidth: 1.5,
+            pointRadius: 0,
+            pointHoverRadius: 3
+          }]
+        };
+
 
     // Options
     var bouOptions = {
