@@ -67,9 +67,7 @@ public class StockLedger {
             }
 
         }
-        stockLegderModels.forEach(x->{
-            System.out.println(x.getBalance());
-        });
+        stockLegderModels.forEach(x-> System.out.println(x.getBalance()));
         return stockLegderModels;
     }
 }

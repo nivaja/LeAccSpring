@@ -26,9 +26,12 @@ public class SalesEntryController {
     SessionService sessionService;
 
     @PostMapping("/add")
-    public void addSalesAgent(@RequestBody Map<String, Object> json) throws ParseException,NullPointerException,NumberFormatException {
-        salesService.save(json);
+    public void addSales(@RequestBody Sales sales) {
+        sales.setFiscalAccount(sessionService.getCurrentUserSession().getFiscalAccount());
+        sales.getSalesProducts().forEach(enrty -> enrty.setSales(sales));
+        salesRepo.save(sales);
     }
+
 
     @GetMapping("/get/{id}")
     public Sales getById(@PathVariable int id){

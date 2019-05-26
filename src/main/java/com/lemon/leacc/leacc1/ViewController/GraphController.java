@@ -2,6 +2,7 @@ package com.lemon.leacc.leacc1.ViewController;
 
 import com.lemon.leacc.leacc1.Auth.SessionService;
 
+import com.lemon.leacc.leacc1.BussinessLogic.StockSummary;
 import com.lemon.leacc.leacc1.Model.Customer;
 import com.lemon.leacc.leacc1.Model.FiscalAccount;
 import com.lemon.leacc.leacc1.Model.Product;
@@ -156,6 +157,13 @@ data.put("amounts",amounts);
             System.out.println(x.getCustomer().getName()+", "+x.getProduct().getProductDescription()+", "+x.getAmount());
         });
 return data;
+    }
+
+    @Autowired
+    StockSummary stockSummary;
+    @RequestMapping("/stockSummary")
+    public  Map<String,List<Object>> getStockSummary(){
+        return stockSummary.getStockSummary();
     }
 }
 

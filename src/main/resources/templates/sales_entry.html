@@ -70,7 +70,7 @@
                             <div class="form-row">
                                 <div class="col">
                                     <label>Description</label>
-                                    <input name="description" type="text" class="form-control" placeholder="Description">
+                                    <input name="salesDescription" type="text" class="form-control" placeholder="Description">
                                 </div>
 
                             </div>
@@ -155,7 +155,7 @@
                                         <th scope="row">1</th>
 
                                         <td>
-                                            <select class="form-control" required>
+                                            <select class="form-control product" required>
                                                 <th:block th:each="product : ${products}">
                                                     <option th:value="${product.getProductId()}" th:text="${product.getProductDescription()}">
 
@@ -209,15 +209,9 @@
             </div>
         </form>
     </div>
-    <div class="modal fade" id="voucher_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
 
-            <div th:include="fragment/voucher_modal :: voucher_modal"></div>
-
-
-        </div>
-    </div>
     <script th:src="@{/space_static/plugins/jquery/jquery-3.1.0.min.js}"></script>
+    <script th:src="@{/custom/js/basic_form_script.js}"></script>
     <script th:src="@{/custom/js/sales_entry.js}"></script>
 </div>
 

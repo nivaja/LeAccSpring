@@ -13,11 +13,13 @@ import java.util.Map;
 public class ProfitAndLoss {
     @Autowired
     AccountRepo accountRepo;
+
     @Autowired
     SalesRepo salesRepo;
 
     @Autowired
     PurchaseRepo purchaseRepo;
+
     @Autowired
     SessionService sessionService;
 
@@ -32,6 +34,7 @@ public class ProfitAndLoss {
 
     @Autowired
     AccountTypeRepo accountTypeRepo;
+
     @Autowired
     VoucherPaymentAccountRepo voucherPaymentAccountRepo;
 
@@ -97,7 +100,6 @@ public class ProfitAndLoss {
             }
             accountAndTotalAmount.put(account.getAccountDescription(),totalAmount);
         }
-
         accountAndTotalAmount.put("Total Income",amount);
         return accountAndTotalAmount;
     }
