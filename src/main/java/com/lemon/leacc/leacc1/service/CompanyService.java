@@ -1,6 +1,8 @@
 package com.lemon.leacc.leacc1.service;
 
 import com.lemon.leacc.leacc1.Auth.*;
+import com.lemon.leacc.leacc1.Model.FiscalAccount;
+import com.lemon.leacc.leacc1.RestRepo.FiscalAccountRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +19,12 @@ public class CompanyService{
 
     @Autowired
     UserRepo userRepo;
+    @Autowired
+    FiscalAccountRepo fiscalAccountRepo;
 
     public void registerCompany(Company company){
         User user = new User();
+        FiscalAccount fiscalAccount = new FiscalAccount();
         List<Role> roles = new ArrayList<>();
         roles.add(roleRepo.getByRoleDescription("ADMIN"));
         roles.add(roleRepo.getByRoleDescription("COMPANY"));
@@ -29,6 +34,9 @@ public class CompanyService{
         user.setEmail(company.getEmail());
         user.setRoles(roles);
 
+        fiscalAccount.setCompany(company);
+        fiscalAccount.setFiscalAccountDescription(company.getCompanyInitial()+"_ACCOUNT");
+        fiscalAccountRepo.save(fiscalAccount);
         companyRepo.save(company);
         userRepo.save(user);
     }

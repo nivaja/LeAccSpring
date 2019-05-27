@@ -90,7 +90,7 @@
                                 <th:block th:each="vendor : ${vendors}">
                                     <tr>
                                         <th th:text="${vendor.getVendorId()}"></th>
-                                        <td> <a th:href="@{'/manage/vendor/' + ${vendor.getVendorId()}}" th:text="${vendor.getName()}"></a></td>
+                                        <td th:text="${vendor.getName()}"></td>
                                         <td th:text="${vendor.getPhone()}"></td>
                                         <td th:text="${vendor.getEmail()}"></td>
                                         <td th:text="${vendor.getBankName()}"></td>
