@@ -89,7 +89,7 @@
                                 <th:block th:each="vehicle : ${vehicles}">
                                     <tr>
                                         <th th:text="${vehicle.getVehicleId()}"></th>
-                                        <td> <a th:href="@{'/manage/customer/' + ${vehicle.getVehicleId()}}" th:text="${vehicle.getPlateNumber()}"></a></td>
+                                        <td th:text="${vehicle.getPlateNumber()}"></td>
                                         <td th:text="${vehicle.getVehicleModel()}"></td>
 
                                         <td th:text="${vehicle.getBillBookNo()}"></td>

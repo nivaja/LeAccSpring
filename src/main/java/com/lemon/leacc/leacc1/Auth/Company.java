@@ -10,7 +10,6 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-//@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="companyId")
 public class Company implements Serializable{
     @Id
     @GeneratedValue

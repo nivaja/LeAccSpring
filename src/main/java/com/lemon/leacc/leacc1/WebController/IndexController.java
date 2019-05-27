@@ -266,7 +266,8 @@ VoucherPaymentRepo voucherPaymentRepo;
     }
 
     @RequestMapping("/manage/sales_agent")
-    public String SalesAgent(){
+    public String SalesAgent(Model model){
+        model.addAttribute("salesAgents",salesAgentRepo.getByFiscalAccount(sessionService.getCurrentUserSession().getFiscalAccount()));
         return "sales_agent";
     }
 

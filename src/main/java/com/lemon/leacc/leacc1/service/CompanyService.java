@@ -33,11 +33,12 @@ public class CompanyService{
         user.setCompany(company);
         user.setEmail(company.getEmail());
         user.setRoles(roles);
-
+        companyRepo.save(company);
+        userRepo.save(user);
         fiscalAccount.setCompany(company);
         fiscalAccount.setFiscalAccountDescription(company.getCompanyInitial()+"_ACCOUNT");
         fiscalAccountRepo.save(fiscalAccount);
-        companyRepo.save(company);
-        userRepo.save(user);
+
+
     }
 }

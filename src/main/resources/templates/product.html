@@ -87,7 +87,7 @@
                                 <th:block th:each="product : ${products}">
                                     <tr>
                                         <th th:text="${product.getProductId()}"></th>
-                                        <td> <a th:href="@{'/manage/customer/' + ${product.getProductId()}}" th:text="${product.getProductDescription()}"></a></td>
+                                        <td th:text="${product.getProductDescription()}"></td>
                                         <td th:text="${product.getUom()}"></td>
                                         <td th:text="${product.getPrice()}"></td>
                                         <td th:text="${product.getStockLimit()}"></td>
