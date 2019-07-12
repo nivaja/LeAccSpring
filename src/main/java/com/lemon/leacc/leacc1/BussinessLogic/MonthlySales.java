@@ -18,7 +18,7 @@ public class MonthlySales {
     EntityManager entityManager;
 
     public Map<String,Object> getMonthlySales(){
-        var fiscalAccountId = sessionService.getCurrentUserSession().getFiscalAccount().getFisacalAccountId();
+        int fiscalAccountId = sessionService.getCurrentUserSession().getFiscalAccount().getFisacalAccountId();
         Map<String,Object> json= new HashMap<>();
         List<Object[]> data = (List<Object[]>)entityManager.createNativeQuery("select MONTHNAME(s.date),sum(sp.net_amount) from sales s, sales_product sp where s.sales_id=sp.sales_entry_id and s.fiscal_account_id= " + fiscalAccountId+" group by MONTHNAME(s.date);").getResultList();
 

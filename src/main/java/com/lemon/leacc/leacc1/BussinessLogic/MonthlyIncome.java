@@ -1,6 +1,7 @@
 package com.lemon.leacc.leacc1.BussinessLogic;
 
 import com.lemon.leacc.leacc1.Auth.SessionService;
+import com.lemon.leacc.leacc1.Model.FiscalAccount;
 import com.lemon.leacc.leacc1.Model.Payment;
 import com.lemon.leacc.leacc1.Model.PaymentAccount;
 import com.lemon.leacc.leacc1.Model.RecieptAccount;
@@ -28,7 +29,7 @@ public class MonthlyIncome {
     VoucherRecieptAccountRepo recieptAccountRepo;
 
     public Map<String,Object> getMonthlyIncome(){
-        var fiscalAccountId = sessionService.getCurrentUserSession().getFiscalAccount().getFisacalAccountId();
+        int fiscalAccountId = sessionService.getCurrentUserSession().getFiscalAccount().getFisacalAccountId();
 //        List<Object> net  = new ArrayList<>();
 //        List<Object> income = new ArrayList<>();
 //        List<Object> expenses = new ArrayList<>();

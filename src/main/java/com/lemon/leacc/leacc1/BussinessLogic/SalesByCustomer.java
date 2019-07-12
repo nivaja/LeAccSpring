@@ -20,7 +20,7 @@ public class SalesByCustomer {
     EntityManager entityManager;
 
     public void getSalesByCustomer(){
-        var fiscalAccountId = sessionService.getCurrentUserSession().getFiscalAccount().getFisacalAccountId();
+        int fiscalAccountId = sessionService.getCurrentUserSession().getFiscalAccount().getFisacalAccountId();
         Map<String,Object> json= new HashMap<>();
         List<Object[]> data = (List<Object[]>)entityManager.createNativeQuery("select c.name, sum(sp.net_amount), p.product_description from customer c, sales s, sales_product sp, product p\n" +
                 "    where c.customer_id = s.customer_id and s.sales_id = sp.sales_entry_id and sp.product_id = p.product_id and s.fiscal_account_id= "+fiscalAccountId +" group by name, product_description;").getResultList();

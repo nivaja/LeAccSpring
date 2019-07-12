@@ -52,8 +52,8 @@ public class StockLedger {
        stockLegderModels.sort(Comparator.comparing(StockLegderModel::getDate));
         for (int i = 0; i < stockLegderModels.size(); i++) {
             try {
-                var slmThis = stockLegderModels.get(i);
-                var slmPrev = (i>=1)? stockLegderModels.get(i-1):null;
+                StockLegderModel slmThis = stockLegderModels.get(i);
+                StockLegderModel slmPrev = (i>=1)? stockLegderModels.get(i-1):null;
 
                 if (slmThis.getReceivedQuantity()==0){
                     slmThis.setBalance((i==0)? slmThis.getReceivedQuantity()-slmThis.getIssuedQuantity():slmPrev.getBalance()-slmThis.getIssuedQuantity());
