@@ -15,7 +15,6 @@ import com.lemon.leacc.leacc1.RestRepo.ProductRepo;
 import com.lemon.leacc.leacc1.RestRepo.SalesProductRepo;
 import com.lemon.leacc.leacc1.RestRepo.SalesRepo;
 import com.lemon.leacc.leacc1.viewModel.SalesByCustomerModel;
-import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

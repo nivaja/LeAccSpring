@@ -4,7 +4,6 @@ import com.lemon.leacc.leacc1.Auth.SessionService;
 import com.lemon.leacc.leacc1.Model.FiscalAccount;
 import com.lemon.leacc.leacc1.Model.Purchase;
 import com.lemon.leacc.leacc1.RestRepo.ProductRepo;
-import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

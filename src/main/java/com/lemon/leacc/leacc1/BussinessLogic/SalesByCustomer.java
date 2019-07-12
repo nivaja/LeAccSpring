@@ -2,7 +2,6 @@ package com.lemon.leacc.leacc1.BussinessLogic;
 
 import com.lemon.leacc.leacc1.Auth.SessionService;
 import com.lemon.leacc.leacc1.RestRepo.SalesRepo;
-import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

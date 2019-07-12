@@ -2,7 +2,7 @@ package com.lemon.leacc.leacc1.viewModel;
 
 import com.lemon.leacc.leacc1.Model.Customer;
 import com.lemon.leacc.leacc1.Model.Product;
-import jdk.nashorn.internal.objects.annotations.Getter;
+//import jdk.nashorn.internal.objects.annotations.Getter;
 
 import javax.persistence.Entity;
 

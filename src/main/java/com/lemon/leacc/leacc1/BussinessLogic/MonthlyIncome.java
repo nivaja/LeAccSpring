@@ -6,7 +6,6 @@ import com.lemon.leacc.leacc1.Model.PaymentAccount;
 import com.lemon.leacc.leacc1.Model.RecieptAccount;
 import com.lemon.leacc.leacc1.RestRepo.PaymentAccountRepo;
 import com.lemon.leacc.leacc1.RestRepo.VoucherRecieptAccountRepo;
-import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
