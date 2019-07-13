@@ -1,4 +1,4 @@
-$.getJSON("http://localhost:8000/api/graph/salesByCustomer", function(json) {
+$.getJSON("https://leacc.herokuapp.com/api/graph/salesByCustomer", function(json) {
 console.log(json);
     var barOptions_stacked = {
     tooltips: {

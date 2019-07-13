@@ -1,4 +1,4 @@
-$.getJSON("http://localhost:8000/api/graph/monthlyIncome", function(json) {
+$.getJSON("https://leacc.herokuapp.com/api/graph/monthlyIncome", function(json) {
 
     var chartData = {
         labels: json.months,

@@ -1,6 +1,6 @@
 var g = document.getElementById("monthlySales").getContext('2d');
 
-$.getJSON("http://localhost:8000/api/graph/monthlySales", function(data) {
+$.getJSON("https://leacc.herokuapp.com/api/graph/monthlySales", function(data) {
 
     var monthlySales = new Chart(g, {
         type: 'line',

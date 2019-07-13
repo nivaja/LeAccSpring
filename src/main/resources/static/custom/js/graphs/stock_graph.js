@@ -1,7 +1,7 @@
 
 //var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 //var color = Chart.helpers.color;
-$.getJSON("http://localhost:8000/api/graph/stockSummary", function(data) {
+$.getJSON("https://leacc.herokuapp.com/api/graph/stockSummary", function(data) {
     console.log(data.quantities);
     console.log(data.lable);
 

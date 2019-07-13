@@ -3,7 +3,7 @@ $(function(){
         e.preventDefault();
         var data = JSON.stringify(objectifyForm($("#customerForm").serializeArray()));
 
-        var URL = "http://localhost:8000/api/customer/add"
+        var URL = "https://leacc.herokuapp.com/api/customer/add"
         $.ajax({
             type: "POST",
             url: URL,
