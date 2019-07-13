@@ -85,7 +85,7 @@ public class IndexController {
         model.addAttribute("incomeAccounts", accountRepo.findByFiscalAccountAndAccountType_AccountTypeDescription(fiscalAccount,"income"));
         model.addAttribute("expenseAccounts", accountRepo.findByFiscalAccountAndAccountType_AccountTypeDescription(fiscalAccount,"expense"));
 
-        return "chartOfAccount";
+        return "ChartOfAccount";
     }
 
 
