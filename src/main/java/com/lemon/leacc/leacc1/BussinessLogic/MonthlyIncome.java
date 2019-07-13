@@ -39,8 +39,8 @@ public class MonthlyIncome {
         List<Object> expensesValues = Arrays.asList(0,0,0,0,0,0,0,0,0,0,0,0);
 
 
-        List<Object[]> income = (List<Object[]>)entityManager.createNativeQuery("select monthname(p.date),sum(pa.amount) from payment p , payment_account pa where pa.payment_id=p.payment_id and p.fiscal_account_id = "+fiscalAccountId+" group by monthname(p.date)").getResultList();
-        List<Object[]> expenses = (List<Object[]>)entityManager.createNativeQuery("select monthname(r.date),sum(ra.amount) from reciept r , reciept_account ra where ra.reciept_id=r.reciept_id and r.fiscal_account_id = "+fiscalAccountId+" group by monthname(r.date)").getResultList();
+        List<Object[]> income = (List<Object[]>)entityManager.createNativeQuery("select to_char(s.date,'Month'),sum(pa.amount) from payment p , payment_account pa where pa.payment_id=p.payment_id and p.fiscal_account_id = "+fiscalAccountId+" group by to_char(s.date,'Month')").getResultList();
+        List<Object[]> expenses = (List<Object[]>)entityManager.createNativeQuery("select to_char(s.date,'Month'),sum(ra.amount) from reciept r , reciept_account ra where ra.reciept_id=r.reciept_id and r.fiscal_account_id = "+fiscalAccountId+" group by to_char(s.date,'Month')").getResultList();
 List<Object> net = new ArrayList<>();
 
         for (Object[] d:income){

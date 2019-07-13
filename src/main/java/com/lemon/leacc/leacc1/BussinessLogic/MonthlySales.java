@@ -20,7 +20,7 @@ public class MonthlySales {
     public Map<String,Object> getMonthlySales(){
         int fiscalAccountId = sessionService.getCurrentUserSession().getFiscalAccount().getFisacalAccountId();
         Map<String,Object> json= new HashMap<>();
-        List<Object[]> data = (List<Object[]>)entityManager.createNativeQuery("select MONTHNAME(s.date),sum(sp.net_amount) from sales s, sales_product sp where s.sales_id=sp.sales_entry_id and s.fiscal_account_id= " + fiscalAccountId+" group by MONTHNAME(s.date);").getResultList();
+        List<Object[]> data = (List<Object[]>)entityManager.createNativeQuery("select to_char(s.date,'Month'),sum(sp.net_amount) from sales s, sales_product sp where s.sales_id=sp.sales_entry_id and s.fiscal_account_id= " + fiscalAccountId+" group by to_char(s.date,'Month');").getResultList();
 
 
         List<Object> months = Arrays.asList("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
