@@ -147,7 +147,7 @@ layout:decorate="~{fragment/main_layout}">
                         <canvas height="280" id="expensesChart" class="m-auto"></canvas>
                         <script>
                             //doughnut
-                            $.getJSON("http://localhost:8000/api/graph/expenses", function(data){
+                            $.getJSON("https://leacc.herokuapp.com/api/graph/expenses", function(data){
 console.log(data);
                                 console.log(data.lable);
                                 console.log(data.amount);
@@ -225,7 +225,7 @@ console.log(data);
                         <canvas height="280" id="incomeChart" class="m-auto"></canvas>
                         <script>
                             //doughnut
-                            $.getJSON("http://localhost:8000/api/graph/income", function(data){
+                            $.getJSON("https://leacc.herokuapp.com/api/graph/income", function(data){
                                 console.log(data);
                                 console.log(data.lable);
                                 console.log(data.amount);
