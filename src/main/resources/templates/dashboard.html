@@ -230,8 +230,8 @@ console.log(data);
                                 console.log(data.lable);
                                 console.log(data.amount);
 
-                                var ctxD = document.getElementById("incomeChart").getContext('2d');
-                                var income = new Chart(ctxD, {
+                                var ctxI = document.getElementById("incomeChart").getContext('2d');
+                                var income = new Chart(ctxI, {
                                     type: 'doughnut',
                                     data: {
                                         labels: data.lable,

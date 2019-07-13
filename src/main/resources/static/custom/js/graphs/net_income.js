@@ -27,8 +27,8 @@ $.getJSON("https://leacc.herokuapp.com/api/graph/monthlyIncome", function(json) 
 
     };
 // window.onload = function() {
-    var ctx = document.getElementById('netIncome').getContext('2d');
-    window.myMixedChart = new Chart(ctx, {
+    var netGraph = document.getElementById('netIncome').getContext('2d');
+    window.myMixedChart = new Chart(netGraph, {
         type: 'bar',
         data: chartData,
         options: {

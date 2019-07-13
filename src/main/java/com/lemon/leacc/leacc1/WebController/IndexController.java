@@ -160,7 +160,7 @@ public class IndexController {
 
         FiscalAccount fiscalAccount =sessionService.getCurrentUserSession().getFiscalAccount();
         List<Account> accounts = accountRepo.findByFiscalAccount(fiscalAccount);
-        List<SubAccount> cashSubAccounts = subAccountRepo.findByAccount_AccountDescription("cash");
+        List<SubAccount> cashSubAccounts = subAccountRepo.findByAccount_AccountDescription("Cash");
         List<SubAccount> subAccounts = subAccountRepo.findByFiscalAccount(fiscalAccount);
 
         model.addAttribute("subAccounts",subAccounts);
