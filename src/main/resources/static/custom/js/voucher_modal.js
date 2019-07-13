@@ -26,7 +26,7 @@ $("#recieptModalForm").submit(function (e) {
     e.preventDefault();
     var json = objects;
     console.log(JSON.stringify(json));
-    var URL = "http://localhost:8000/api/voucherReciept/add";
+    var URL = "https://leacc.herokuapp.com/api/voucherReciept/add";
     $.ajax({
         type: "POST",
         url: URL,

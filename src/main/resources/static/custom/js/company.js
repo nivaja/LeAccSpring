@@ -4,7 +4,7 @@ function populate(frm, data) {
     });
 }
 
-$.getJSON( "http://localhost:8000/api/company/get", function( data ) {
+$.getJSON( "https://leacc.herokuapp.com/api/company/get", function( data ) {
     console.log(data);
     populate('#companyForm', data);
 });
@@ -13,7 +13,7 @@ $.getJSON( "http://localhost:8000/api/company/get", function( data ) {
 $("#companyForm").submit(function (e) {
     e.preventDefault();
     console.log(JSON.stringify(companyInfo()));
-    var URL = "http://localhost:8000/api/company/put";
+    var URL = "https://leacc.herokuapp.com/api/company/put";
     $.ajax({
         type: "PUT",
         url: URL,

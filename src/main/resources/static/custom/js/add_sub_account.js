@@ -5,7 +5,7 @@ $(function(){
 
         var json = getSubAccount();
         console.log(json);
-        var URL = "http://localhost:8000/api/subAccount/add";
+        var URL = "https://leacc.herokuapp.com/api/subAccount/add";
         $.ajax({
             type: "POST",
             url: URL,

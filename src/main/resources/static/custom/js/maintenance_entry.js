@@ -2,7 +2,7 @@ $("#maintenanceEntryForm").submit(function (e) {
     e.preventDefault();
     var data=JSON.stringify(makeJson($(this).serializeArray()));
     console.log(data);
-    var URL = "http://localhost:8000/api/maintenanceEntry/add";
+    var URL = "https://leacc.herokuapp.com/api/maintenanceEntry/add";
     $.ajax({
         type: "POST",
         url: URL,

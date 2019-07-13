@@ -3,7 +3,7 @@ $(function(){
         e.preventDefault();
         var data = JSON.stringify(objectifyForm($("#transportationForm").serializeArray()));
         alert(data);
-        var URL = "http://localhost:8000/api/vehicle/add"
+        var URL = "https://leacc.herokuapp.com/api/vehicle/add"
         $.ajax({
             type: "POST",
             url: URL,

@@ -2,7 +2,7 @@ $("#purchaseForm").submit(function (e) {
     e.preventDefault();
    var data=JSON.stringify(getPurchase());
     console.log(data);
-    var URL = "http://localhost:8000/api/purchase/add";
+    var URL = "https://leacc.herokuapp.com/api/purchase/add";
     $.ajax({
         type: "POST",
         url: URL,

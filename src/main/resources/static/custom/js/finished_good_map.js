@@ -2,7 +2,7 @@ $("#finishedProductMapForm").submit(function (e) {
     e.preventDefault();
     var data=JSON.stringify(getTransfer());
     console.log(data);
-    var URL = "http://localhost:8000/api/finishedProductMap/add";
+    var URL = "https://leacc.herokuapp.com/api/finishedProductMap/add";
     $.ajax({
         type: "POST",
         url: URL,

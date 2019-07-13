@@ -5,7 +5,7 @@ $(function(){
 
         var json = getAccount();
         console.log(json);
-        var URL = "http://localhost:8000/api/account/add";
+        var URL = "https://leacc.herokuapp.com/api/account/add";
         $.ajax({
             type: "POST",
             url: URL,

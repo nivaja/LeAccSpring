@@ -3,7 +3,7 @@ $(function(){
         e.preventDefault();
         var data = JSON.stringify(objectifyForm($("#godownForm").serializeArray()));
         alert(data);
-        var URL = "http://localhost:8000/api/godown/add"
+        var URL = "https://leacc.herokuapp.com/api/godown/add"
         $.ajax({
             type: "POST",
             url: URL,

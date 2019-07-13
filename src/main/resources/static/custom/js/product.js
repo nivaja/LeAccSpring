@@ -2,7 +2,7 @@ $(function(){
     $("#productForm").submit(function (e) {
         e.preventDefault();
         var data = JSON.stringify(objectifyForm($("#productForm").serializeArray()));
-        var URL = "http://localhost:8000/api/product/add"
+        var URL = "https://leacc.herokuapp.com/api/product/add"
         $.ajax({
             type: "POST",
             url: URL,

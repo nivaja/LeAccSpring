@@ -1,7 +1,7 @@
 $("#submit").click(function () {
 
 
-    var URL = "http://localhost:8000/api/user/addUser"
+    var URL = "https://leacc.herokuapp.com/api/user/addUser"
     $.ajax({
         type: "POST",
         url: URL,

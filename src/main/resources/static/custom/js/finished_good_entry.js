@@ -2,7 +2,7 @@ $("#finishedGoodEntryForm").submit(function (e) {
     e.preventDefault();
     var data=JSON.stringify(getTransfer());
     console.log(data);
-    var URL = "http://localhost:8000/api/finishedGoodEntry/add";
+    var URL = "https://leacc.herokuapp.com/api/finishedGoodEntry/add";
     $.ajax({
         type: "POST",
         url: URL,

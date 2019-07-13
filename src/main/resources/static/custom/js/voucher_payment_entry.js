@@ -2,7 +2,7 @@ $("#voucherPaymentForm").submit(function (e) {
     e.preventDefault();
     var data=JSON.stringify(getPaymentDetail());
     console.log(data);
-    var URL = "http://localhost:8000/api/voucherPayment/add";
+    var URL = "https://leacc.herokuapp.com/api/voucherPayment/add";
     $.ajax({
         type: "POST",
         url: URL,
