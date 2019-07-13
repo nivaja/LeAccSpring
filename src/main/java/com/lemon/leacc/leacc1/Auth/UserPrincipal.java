@@ -8,9 +8,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class UserPrincipal implements UserDetails {
-    private User user;
+    private AppUser user;
 
-    public UserPrincipal(User user) {
+    public UserPrincipal(AppUser user) {
         super();
         this.user = user;
 

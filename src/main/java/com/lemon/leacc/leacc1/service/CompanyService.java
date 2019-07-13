@@ -23,7 +23,7 @@ public class CompanyService{
     FiscalAccountRepo fiscalAccountRepo;
 
     public void registerCompany(Company company){
-        User user = new User();
+        AppUser user = new AppUser();
         FiscalAccount fiscalAccount = new FiscalAccount();
         List<Role> roles = new ArrayList<>();
         roles.add(roleRepo.getByRoleDescription("ADMIN"));

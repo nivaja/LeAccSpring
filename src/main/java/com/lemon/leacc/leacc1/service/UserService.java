@@ -19,7 +19,7 @@ public class UserService {
     RoleRepo roleRepo;
 
     public void save(Map<String, Object> json){
-        User user = new User();
+        AppUser user = new AppUser();
         //System.out.println((String)json.get("username"));
         user.setUsername((String)json.get("username"));
         user.setPassword((String)json.get("password"));

@@ -18,7 +18,7 @@ public class Role implements Serializable {
     @JsonManagedReference
     @JsonBackReference
     @ManyToMany(mappedBy = "roles",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    private List<User> users;
+    private List<AppUser> users;
 
     public int getRoleId() {
         return roleId;
@@ -36,11 +36,11 @@ public class Role implements Serializable {
         this.roleDescription = roleDescription;
     }
 
-    public List<User> getUsers() {
+    public List<AppUser> getUsers() {
         return users;
     }
 
-    public void setUsers(List<User> users) {
+    public void setUsers(List<AppUser> users) {
         this.users = users;
     }
 }

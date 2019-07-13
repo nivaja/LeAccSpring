@@ -44,11 +44,11 @@ public class IndexController {
     public String dashboard(Model model){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserPrincipal authUser = (UserPrincipal) auth.getPrincipal();
-        Optional<User> optionalUser = userRepo.findByUsername(authUser.getUsername());
+        Optional<AppUser> optionalUser = userRepo.findByUsername(authUser.getUsername());
         if (!optionalUser.isPresent()){
             throw  new RuntimeException("USER NOT FOUND");
         }
-        User user=  optionalUser.get();
+        AppUser user=  optionalUser.get();
         model.addAttribute("dashboard",new Dashboard(sessionService.getCurrentUserSession().getFiscalAccount()));
         System.out.println(user.getUsername()+", "+user.getCompany().getCompanyId());
         return "dashboard";

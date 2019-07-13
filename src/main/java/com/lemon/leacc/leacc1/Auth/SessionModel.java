@@ -3,21 +3,21 @@ package com.lemon.leacc.leacc1.Auth;
 import com.lemon.leacc.leacc1.Model.FiscalAccount;
 
 public class SessionModel {
-    private User user;
+    private AppUser user;
     private Company company;
     private FiscalAccount fiscalAccount;
 
-    public SessionModel(User user, Company company, FiscalAccount fiscalAccount) {
+    public SessionModel(AppUser user, Company company, FiscalAccount fiscalAccount) {
         this.user = user;
         this.company = company;
         this.fiscalAccount = fiscalAccount;
     }
 
-    public User getUser() {
+    public AppUser getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(AppUser user) {
         this.user = user;
     }
 

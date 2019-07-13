@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="userId")
-public class User implements Serializable {
+public class AppUser implements Serializable {
         @GeneratedValue
         @Id
         private int userId;

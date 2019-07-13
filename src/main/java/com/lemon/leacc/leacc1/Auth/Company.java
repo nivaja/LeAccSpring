@@ -38,7 +38,7 @@ public class Company implements Serializable{
 
     @JsonIgnore
     @OneToMany(mappedBy ="Company" ,cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<User> users;
+    private List<AppUser> users;
 
 
     public Company(){}
@@ -135,11 +135,11 @@ public class Company implements Serializable{
         this.fiscalAccount = fiscalAccount;
     }
 
-    public List<User> getUsers() {
+    public List<AppUser> getUsers() {
         return users;
     }
 
-    public void setUsers(List<User> users) {
+    public void setUsers(List<AppUser> users) {
         this.users = users;
     }
 
